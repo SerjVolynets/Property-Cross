@@ -1,10 +1,7 @@
 let input = document.querySelector('input');
-let form = document.querySelector('form');
 let loc;
 let jsonString;
 let objRequest;
-
-
 
 function onPress () {
     loc = input.value;
@@ -19,7 +16,6 @@ function sendRequest () {
     request.setRequestHeader('Content-Type', 'application/json');
     request.setRequestHeader('Accept', 'application/json');
    
-
     request.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
              console.log(request.responseText)
@@ -28,10 +24,8 @@ function sendRequest () {
              localStorage.setItem('myStorage', JSON.stringify(objRequest));
              window.open('resultPage.html');    
          }
-        };
-
-request.send();
-
+    };
+    request.send();
 };
 
 
