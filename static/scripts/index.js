@@ -6,7 +6,7 @@ let objRequest;
 
 
 
-function onPress () {
+export function onPress () {
     // e.preventDefault();
     loc = input.value;
     input.value = '';
@@ -22,8 +22,8 @@ function sendRequest () {
     // request.responseType = 'json';
 
     request.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-    console.log(request.responseText)
+        if (this.readyState == 4 && this.status == 200) {
+        console.log(request.responseText)
         jsonString = request.responseText;
         objRequest = JSON.parse(jsonString);
 
@@ -33,14 +33,16 @@ function sendRequest () {
         window.open('resultPage.html');
         
         // drawResult(objRequest);
-          
+        
     }
 };
 
 request.send();
 
 }
+
 export {objRequest};
+
 // function drawResult (objRequest){
     
 //     var divBox = document.createElement('div');
