@@ -6,8 +6,7 @@ let objRequest;
 
 
 
-export function onPress () {
-    // e.preventDefault();
+function onPress () {
     loc = input.value;
     input.value = '';
     console.log(loc);
@@ -16,46 +15,26 @@ export function onPress () {
 
 function sendRequest () {
     var request = new XMLHttpRequest();
-    request.open('GET', 'https://api.nestoria.com.br/api?encoding=json&pretty=1&action=search_listings&country=br&listing_type=buy&place_name='+loc,true);
+    request.open('GET', 'https://api.nestoria.co.uk/api?encoding=json&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name='+loc,false);
     request.setRequestHeader('Content-Type', 'application/json');
-    request.setRequestHeader('Accept', 'application/json')
-    // request.responseType = 'json';
+    request.setRequestHeader('Accept', 'application/json');
+   
 
     request.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-        console.log(request.responseText)
-        jsonString = request.responseText;
-        objRequest = JSON.parse(jsonString);
-
-        console.log(objRequest);
-        console.log(objRequest.response.listings[0].img_url);
-        
-        window.open('resultPage.html');
-        
-        // drawResult(objRequest);
-        
-    }
-};
+             console.log(request.responseText)
+             jsonString = request.responseText;
+             objRequest = JSON.parse(jsonString);
+             localStorage.setItem('myStorage', JSON.stringify(objRequest));
+             window.open('resultPage.html');    
+         }
+        };
 
 request.send();
 
-}
+};
 
-export {objRequest};
 
-// function drawResult (objRequest){
-    
-//     var divBox = document.createElement('div');
-//     var img = document.createElement('img');
-//     var price = document.createElement('p');
-//     var description = document.createElement('p');
-    
-    
-    
-//     img.setAttribute('src',objRequest.response.listings[0].img_url)
-//     var divRoot = document.getElementById('root');
-//     divRoot.appendChild(img);
-// }
 
 
 
