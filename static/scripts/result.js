@@ -1,6 +1,8 @@
-import {objRequest} from './main.mjs/index.js';
+import {objRequest} from './index.js';
+
 window.onload = function () {
-    
+
+console.log(objRequest);
     function drawResult (value){
     
         var divBox = document.createElement('div');

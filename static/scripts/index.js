@@ -1,13 +1,13 @@
-var input = document.querySelector('input');
-var form = document.querySelector('form');
-var loc;
-var jsonString;
-var objRequest;
+let input = document.querySelector('input');
+let form = document.querySelector('form');
+let loc;
+let jsonString;
+let objRequest;
 
 
-// console.log(divRoot);
-form.onsubmit = function (e) {
-    e.preventDefault();
+
+function onPress () {
+    // e.preventDefault();
     loc = input.value;
     input.value = '';
     console.log(loc);
@@ -33,8 +33,7 @@ function sendRequest () {
         window.open('resultPage.html');
         
         // drawResult(objRequest);
-        
-        
+          
     }
 };
 
