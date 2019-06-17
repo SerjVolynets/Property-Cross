@@ -31,3 +31,18 @@ image {
     height: 300px;
     width: 400px;
 }
+#TextArea {
+    display: block;
+    width: 500px;
+    margin: 0 auto;
+    border:1px solid violet;
+}
+#TextArea p {
+    display: block;
+    text-align: left;
+    padding:10px;
+    
+}
+#TextArea p:hover {
+    background-color:gray;
+}

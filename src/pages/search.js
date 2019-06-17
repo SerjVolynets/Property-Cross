@@ -1,59 +1,74 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 import SearchResult from '../components/searchResult.js';
 
 class Search extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            valueInput: ''
-        }
-        // this.setState = this.setState.bind(this);
-    }
-
     takeInputValue = (event) => {
-        this.setState({ valueInput: event.target.value });  
+        this.setState({ valueInput: event.target.value });
     }
 
     buttonClick = (event) => {
         event.preventDefault();
-        if (!this.state.valueInput.length) {
+        if (!this.props.valueInput.length) {
             return;
         }
         this.setState({ valueInput: '' })
         this.seenRequest();
-
     }
 
     seenRequest = () => {
-        let loc = this.state.valueInput;
-        console.log(loc);
+        let loc = this.props.valueInput;
         fetch('https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=' + loc)
-            .then(function (response) {
+            .then((response) => {
                 return response.json();
             })
-            .then(function (data) {
+            .then((data) => {
                 console.log(data);
-                console.log(data.response.locations);
                 this.setState({
-                    test: data.response.locations
-                })
+                    listings: data.response.listings,
+                    searchLocation: data.response.locations[0].long_title,
+                    showResult: true
+                });
+                console.log(this.props.listings);
+                console.log(this.props.searchLocation);
             })
-            .catch(function (err) { console.log('error ', err) });
-        // console.log(objTest);
-    }
+            .catch((err) => {
+                console.log('error ', err)
+                this.setState({
+                    searchLocation: 'Sorry \'' + loc + '\' does not exist',
+                    showResult: true
+                })
+            });
+
+    };
 
     render() {
+        console.log(this.props);
         return <div>
             <form onSubmit={() => false}>
-                <Input type="text" onChange={this.takeInputValue} value={this.state.valueInput} />
+                <Input type="text" onChange={this.takeInputValue} value={this.props.valueInput} />
                 <Button name="Search" onClick={this.buttonClick} />
-                {/* <SearchResult name={this.state} /> */}
+                {this.props.showResult ? <SearchResult name={this.props.searchLocation} /> : null}
             </form>
         </div>
     }
 }
 
-export default Search;
+function mapStateToProps(state) {
+    return {
+        valueInput: state.valueInput,
+        showResult: state.showResult
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        onAdd: () => dispatch({ type: 'ADD' }),
+        onReturn: () => dispatch({ type: 'RETURN' })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
