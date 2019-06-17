@@ -5,15 +5,13 @@ import SearchResult from '../components/searchResult.js';
 
 class Search extends Component {
 
-    // constructor() {
-
-    // }
-
-
-    state = {
-        valueInput: ''
+    constructor() {
+        super();
+        this.state = {
+            valueInput: ''
+        }
+        // this.setState = this.setState.bind(this);
     }
-
 
     takeInputValue = (event) => {
         this.setState({ valueInput: event.target.value });  
@@ -29,12 +27,9 @@ class Search extends Component {
 
     }
 
-    seenRequest = function sendRequest() {
+    seenRequest = () => {
         let loc = this.state.valueInput;
-        let objTest;
-        this.setState({
-            test: 1
-        })
+        console.log(loc);
         fetch('https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=' + loc)
             .then(function (response) {
                 return response.json();
@@ -42,15 +37,12 @@ class Search extends Component {
             .then(function (data) {
                 console.log(data);
                 console.log(data.response.locations);
-                // bindState({
-                //     response: data.response
-                // })
-                return objTest = data.response;
+                this.setState({
+                    test: data.response.locations
+                })
             })
             .catch(function (err) { console.log('error ', err) });
-        console.log(objTest);
-        console.log(this.state.test);
-
+        // console.log(objTest);
     }
 
     render() {
