@@ -36,6 +36,7 @@ class Search extends Component {
 
     }
     render() {
+        console.log(this.props);
         return <div>
             <h1>Property Cross in UK</h1>
             <p>Use the form below to search for houses to buy. You can search by place-name or postcode.</p>
@@ -49,11 +50,12 @@ class Search extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state)
     return {
         valueInput: state.valueInput,
         showResult: state.showResult,
         listings: state.listings,
-        searchLocation: state.searchLocation
+        searchLocation: state.searchLocation,
     }
 }
 

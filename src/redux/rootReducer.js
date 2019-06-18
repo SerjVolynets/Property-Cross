@@ -19,7 +19,8 @@ export default function rootReducer(state = initialState, actions) {
                 valueInput: '',
                 listings: actions.listings,
                 searchLocation: actions.searchLocation,
-                showResult: true
+                showResult: true,
+                check: 'there'
             }
         case 'Error':
             return {
