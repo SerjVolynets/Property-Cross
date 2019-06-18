@@ -8,13 +8,28 @@ export default function rootReducer(state = initialState, actions) {
     switch (actions.type) {
         case 'ADD':
             return {
-                valueInput: event.target.value;
+                valueInput: actions.inputValue
             }
         case 'RETURN':
-            return state;
+            return {
+                valueInput: ''
+            }
+        case 'AddObj':
+            return {
+                valueInput: '',
+                listings: actions.listings,
+                searchLocation: actions.searchLocation,
+                showResult: true
+            }
+        case 'Error':
+            return {
+                valueInput: '',
+                listings: actions.listings,
+                searchLocation: actions.searchLocation,
+                showResult: true
+            }
         default:
             return state;
     }
-    return state;
 
 }
