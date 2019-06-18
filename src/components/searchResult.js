@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import SearchReasultToken from '../components/searchResultToken.js';
 
 export default (props) => {
@@ -7,7 +8,7 @@ export default (props) => {
         <div>
             <SearchReasultToken name="Please select a location below:" />
             <div id="TextArea">
-                <SearchReasultToken name={props.name} />
+                <NavLink to="/listResult" target='_blank'> <SearchReasultToken name={props.name} /></NavLink>
             </div>
         </div>
 

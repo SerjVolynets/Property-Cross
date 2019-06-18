@@ -37,6 +37,8 @@ class Search extends Component {
     }
     render() {
         return <div>
+            <h1>Property Cross in UK</h1>
+            <p>Use the form below to search for houses to buy. You can search by place-name or postcode.</p>
             <form onSubmit={() => false}>
                 <Input type="text" onChange={(event) => this.props.onAdd(event.target.value)} value={this.props.valueInput} />
                 <Button name="Search" onClick={this.buttonClick} />

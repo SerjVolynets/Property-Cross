@@ -46,3 +46,7 @@ image {
 #TextArea p:hover {
     background-color:gray;
 }
+a {
+    text-decoration: none;
+    color:black;
+}
