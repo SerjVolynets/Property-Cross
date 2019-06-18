@@ -8,7 +8,7 @@ export default (props) => {
         <div>
             <SearchReasultToken name="Please select a location below:" />
             <div id="TextArea">
-                <NavLink to="/listResult" target='_blank'> <SearchReasultToken name={props.name} /></NavLink>
+                <NavLink to="/listResult"> <SearchReasultToken name={props.name} /></NavLink>
             </div>
         </div>
 

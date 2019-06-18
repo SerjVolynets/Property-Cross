@@ -50,3 +50,16 @@ a {
     text-decoration: none;
     color:black;
 }
+div {
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+}
+
+#BackButton {
+    padding: 10px;
+    border: 1px solid blueviolet;
+}
+#BackButton:hover {
+    background-color:gray;
+}
