@@ -3,7 +3,6 @@ import {NavLink} from 'react-router-dom';
 import SearchReasultToken from '../components/searchResultToken.js';
 
 export default (props) => {
-
     return (
         <div>
             <SearchReasultToken name="Please select a location below:" />
@@ -11,8 +10,5 @@ export default (props) => {
                 <NavLink to="/listResult"> <SearchReasultToken name={props.name} /></NavLink>
             </div>
         </div>
-
     )
-
-
 }

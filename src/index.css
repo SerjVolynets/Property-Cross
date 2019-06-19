@@ -30,6 +30,7 @@ button {
 image {
     height: 300px;
     width: 400px;
+    border:1px solid lightgray;
 }
 #TextArea {
     display: block;
@@ -62,4 +63,14 @@ div {
 }
 #BackButton:hover {
     background-color:gray;
+}
+
+.listToken {
+    border:1px solid black;
+    width: 500px;
+    margin-top:20px;
+}
+.listToken:hover {
+    background-color: lightslategray;
+    cursor: pointer;
 }

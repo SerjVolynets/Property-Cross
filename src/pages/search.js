@@ -5,7 +5,6 @@ import Input from '../components/input.js';
 import SearchResult from '../components/searchResult.js';
 
 class Search extends Component {
-
     buttonClick = (event) => {
         event.preventDefault();
         if (!this.props.valueInput.length) {

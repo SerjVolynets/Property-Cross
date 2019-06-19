@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-
+import React from 'react';
 export default (props) => {
-    return <div>
-        <img src={props.src}></img>
+    return <div className="listToken" onClick={props.onClick}>
+        <img src={props.src} alt='No Img Sorry'></img>
         <h1>{props.name} £</h1>
         <p>{props.dis}</p>
     </div>

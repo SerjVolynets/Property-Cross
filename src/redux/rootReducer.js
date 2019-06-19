@@ -1,6 +1,7 @@
 const initialState = {
     valueInput: '',
-    showResult: false
+    showResult: false,
+    showButFav: true
 }
 
 
@@ -19,8 +20,7 @@ export default function rootReducer(state = initialState, actions) {
                 valueInput: '',
                 listings: actions.listings,
                 searchLocation: actions.searchLocation,
-                showResult: true,
-                check: 'there'
+                showResult: true
             }
         case 'Error':
             return {
@@ -28,6 +28,14 @@ export default function rootReducer(state = initialState, actions) {
                 listings: actions.listings,
                 searchLocation: actions.searchLocation,
                 showResult: true
+            }
+        case 'onAddTokenObj':
+            return {
+                valueInput: '',
+                listings: state.listings,
+                searchLocation: state.searchLocation,
+                showResult: true,
+                tokenObj:actions.tokenObj
             }
         default:
             return state;
