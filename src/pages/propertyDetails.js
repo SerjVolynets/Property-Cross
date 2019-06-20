@@ -4,18 +4,19 @@ import { NavLink } from 'react-router-dom';
 import ListToken from '../components/listToken';
 import Button from '../components/button';
 
-
-
-
 class PropertyDetails extends Component {
-    
+
     onClickFav = () => {
-        
-        if (true) {
-            console.log('add');
-        }
-        else {
-            console.log('not add');   
+        let bool = true;
+        this.props.favArr.map(
+            (obj) => { return (obj.index === this.props.tokenObj.index) ? (bool = !bool) : null }
+        )
+        if (bool) {
+            let arrTest = [];
+            arrTest = this.props.favArr;
+
+            arrTest.push(this.props.tokenObj);
+            this.props.onAddFavor(arrTest);
         }
     }
     render() {
@@ -41,11 +42,16 @@ function mapStateToProps(state) {
         showResult: state.showResult,
         listings: state.listings,
         searchLocation: state.searchLocation,
-        tokenObj: state.tokenObj
+        tokenObj: state.tokenObj,
+        favArr: state.favArr
     }
 }
 function mapDispatchToProps(dispatch) {
     return {
+        onAddFavor: (obj) => dispatch({
+            type: 'onAddFavor',
+            favor: obj
+        })
     }
 }
 

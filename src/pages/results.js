@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import ListToken from '../components/listToken'
+import ListToken from '../components/listToken';
 
 class ResultList extends Component {
     onClickToken = (index) => {
@@ -37,7 +37,6 @@ class ResultList extends Component {
     }
 
 }
-
 function mapStateToProps(state) {
     console.log(state);
     return {
@@ -45,6 +44,7 @@ function mapStateToProps(state) {
         showResult: state.showResult,
         listings: state.listings,
         searchLocation: state.searchLocation,
+        favArr:state.favArr
     }
 }
 function mapDispatchToProps(dispatch) {

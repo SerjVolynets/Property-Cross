@@ -1,7 +1,7 @@
 const initialState = {
     valueInput: '',
     showResult: false,
-    showButFav: true
+    favArr: []
 }
 
 
@@ -20,14 +20,16 @@ export default function rootReducer(state = initialState, actions) {
                 valueInput: '',
                 listings: actions.listings,
                 searchLocation: actions.searchLocation,
-                showResult: true
+                showResult: true,
+                favArr: []
             }
         case 'Error':
             return {
                 valueInput: '',
                 listings: actions.listings,
                 searchLocation: actions.searchLocation,
-                showResult: true
+                showResult: true,
+                favArr: state.favArr
             }
         case 'onAddTokenObj':
             return {
@@ -35,7 +37,17 @@ export default function rootReducer(state = initialState, actions) {
                 listings: state.listings,
                 searchLocation: state.searchLocation,
                 showResult: true,
-                tokenObj:actions.tokenObj
+                tokenObj:actions.tokenObj,
+                favArr: state.favArr
+            }
+        case 'onAddFavor':
+            return {
+                valueInput: '',
+                listings: state.listings,
+                searchLocation: state.searchLocation,
+                showResult: true,
+                tokenObj:state.tokenObj,
+                favArr:actions.favor
             }
         default:
             return state;

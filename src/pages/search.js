@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 import SearchResult from '../components/searchResult.js';
@@ -38,6 +39,9 @@ class Search extends Component {
         return <div>
             <h1>Property Cross in UK</h1>
             <p>Use the form below to search for houses to buy. You can search by place-name or postcode.</p>
+            <NavLink to='/favorites'>
+            <Button name="Favorites"/>
+            </NavLink>
             <form onSubmit={() => false}>
                 <Input type="text" onChange={(event) => this.props.onAdd(event.target.value)} value={this.props.valueInput} />
                 <Button name="Search" onClick={this.buttonClick} />
@@ -53,6 +57,7 @@ function mapStateToProps(state) {
         showResult: state.showResult,
         listings: state.listings,
         searchLocation: state.searchLocation,
+        favArr: state.favArr
     }
 }
 
