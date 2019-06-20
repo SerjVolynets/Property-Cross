@@ -6,20 +6,18 @@ import Button from '../components/button.js';
 
 class ResultList extends Component {
     onClickToken = (index) => {
-        console.log('Hi there ' + index)
         let tokenObj = {
             src: this.props.listings[index].img_url,
             price: this.props.listings[index].price,
             dis: this.props.listings[index].summary,
             index: index
         }
-        console.log(tokenObj)
         this.props.onAddTokenObj(tokenObj)
     }
     render() {
         return (
             <div>
-                <NavLink to='/' ><Button name="Back" className='btn btn-secondary'/></NavLink>
+                <NavLink to='/' ><Button name="Back" className='btn btn-secondary' /></NavLink>
                 {this.props.listings.map((obj, index) => {
                     return (
                         <NavLink to='/propertyDetails' key={index}>
@@ -39,13 +37,12 @@ class ResultList extends Component {
 
 }
 function mapStateToProps(state) {
-    console.log(state);
     return {
         valueInput: state.valueInput,
         showResult: state.showResult,
         listings: state.listings,
         searchLocation: state.searchLocation,
-        favArr:state.favArr
+        favArr: state.favArr
     }
 }
 function mapDispatchToProps(dispatch) {

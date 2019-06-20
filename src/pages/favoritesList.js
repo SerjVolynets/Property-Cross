@@ -35,14 +35,6 @@ function mapStateToProps(state) {
         favArr:state.favArr
     }
 }
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         onAddTokenObj: (tokenObj) => dispatch({
-//             type: 'onAddTokenObj',
-//             tokenObj: tokenObj
-//         })
-// ,mapDispatchToProps
-//     }
-// }
+
 
 export default connect(mapStateToProps)(FavoritesList)

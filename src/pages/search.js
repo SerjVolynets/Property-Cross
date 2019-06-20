@@ -23,13 +23,9 @@ class Search extends Component {
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
                 this.props.onAddObj(data.response.listings, data.response.locations[0].long_title)
-                console.log(this.props.listings);
-                console.log(this.props.searchLocation);
             })
             .catch((err) => {
-                console.log('error ', err)
                 this.props.onError(loc)
             });
     };
