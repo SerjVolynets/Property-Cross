@@ -28,7 +28,7 @@ export default function rootReducer(state = initialState, actions) {
                 valueInput: '',
                 listings: actions.listings,
                 searchLocation: actions.searchLocation,
-                showResult: true,
+                showResult: false,
                 favArr: state.favArr
             }
         case 'onAddTokenObj':

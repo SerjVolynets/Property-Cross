@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ListToken from '../components/listToken';
+import Button from '../components/button.js';
+
 
 class FavoritesList extends Component {
     render () {
         return (
             <div>
-                <NavLink to='/' id='BackButton'>Назад</NavLink>
-                {this.props.favArr.map((obj, index) => {
+                <NavLink to='/' ><Button name="Back" className='btn btn-secondary'/></NavLink>
+               {this.props.favArr.map((obj, index) => {
                     return (
                             <ListToken
                                 key={index}

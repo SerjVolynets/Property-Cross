@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ListToken from '../components/listToken';
+import Button from '../components/button.js';
 
 class ResultList extends Component {
     onClickToken = (index) => {
@@ -18,7 +19,7 @@ class ResultList extends Component {
     render() {
         return (
             <div>
-                <NavLink to='/' id='BackButton'>Назад</NavLink>
+                <NavLink to='/' ><Button name="Back" className='btn btn-secondary'/></NavLink>
                 {this.props.listings.map((obj, index) => {
                     return (
                         <NavLink to='/propertyDetails' key={index}>
@@ -26,7 +27,7 @@ class ResultList extends Component {
                                 key={index}
                                 src={obj.img_url}
                                 name={obj.price}
-                                dis={obj.summary}
+                                dis={obj.title}
                                 onClick={() => this.onClickToken(index)}
                             />
                         </NavLink>

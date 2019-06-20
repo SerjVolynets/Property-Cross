@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import Button from '../components/button.js';
 import Input from '../components/input.js';
 import SearchResult from '../components/searchResult.js';
+import SearchReasultToken from '../components/searchResultToken.js';
 
 class Search extends Component {
     buttonClick = (event) => {
@@ -32,20 +33,21 @@ class Search extends Component {
                 this.props.onError(loc)
             });
     };
-    newPageList = () => {
 
-    }
     render() {
         return <div>
             <h1>Property Cross in UK</h1>
+            {this.props.favArr ? <NavLink to='/favorites'>
+                <Button name="Favorites" id='favorites' className='btn btn-info' />
+            </NavLink> : <NavLink to='/'>
+                    <Button name="Favorites" id='favorites' className='btn btn-info' />
+                </NavLink>}
             <p>Use the form below to search for houses to buy. You can search by place-name or postcode.</p>
-            <NavLink to='/favorites'>
-            <Button name="Favorites"/>
-            </NavLink>
+
             <form onSubmit={() => false}>
                 <Input type="text" onChange={(event) => this.props.onAdd(event.target.value)} value={this.props.valueInput} />
-                <Button name="Search" onClick={this.buttonClick} />
-                {this.props.showResult ? <SearchResult name={this.props.searchLocation} /> : null}
+                <Button name="Search" onClick={this.buttonClick} className='btn btn-primary' id='search' />
+                {this.props.showResult ? <SearchResult name={this.props.searchLocation} /> : <SearchReasultToken name={this.props.searchLocation} />}
             </form>
         </div>
     }

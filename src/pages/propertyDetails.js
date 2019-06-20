@@ -22,9 +22,9 @@ class PropertyDetails extends Component {
     render() {
         return (
             <div>
-                <NavLink to='/listResult' id='BackButton'>Назад</NavLink>
+               <NavLink to='/listResult' ><Button name="Back" className='btn btn-secondary'/></NavLink>
                 <h2>Property Details</h2>
-                <Button name='Add' onClick={this.onClickFav} />
+                <Button name='Add to Favorites' className='btn btn-success' onClick={this.onClickFav} />
                 <ListToken
                     key={this.props.tokenObj.index}
                     src={this.props.tokenObj.src}
