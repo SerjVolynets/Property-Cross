@@ -32,7 +32,7 @@ class Search extends Component {
     render() {
         return <div>
             <h1>Property Cross in UK</h1>
-            {(this.props.favArr.length>0) ? <NavLink to='/favorites'>
+            {(this.props.favArr.length > 0) ? <NavLink to='/favorites'>
                 <Button name="Favorites" id='favorites' className='btn btn-info' />
             </NavLink> : <NavLink to='/'>
                     <Button name="Favorites" id='favorites' className='btn btn-info' />
