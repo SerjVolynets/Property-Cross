@@ -12,13 +12,12 @@ class Search extends Component {
         if (!this.props.valueInput.length) {
             return;
         }
-        this.props.onReturn();
         this.seenRequest();
     }
 
     seenRequest = () => {
-        let loc = this.props.valueInput;
-        fetch('https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=' + loc)
+        let location = this.props.valueInput;
+        fetch('https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=' + location)
             .then((response) => {
                 return response.json();
             })
@@ -26,14 +25,14 @@ class Search extends Component {
                 this.props.onAddObj(data.response.listings, data.response.locations[0].long_title)
             })
             .catch((err) => {
-                this.props.onError(loc)
+                this.props.onError(location)
             });
     };
 
     render() {
         return <div>
             <h1>Property Cross in UK</h1>
-            {this.props.favArr ? <NavLink to='/favorites'>
+            {(this.props.favArr.length>1) ? <NavLink to='/favorites'>
                 <Button name="Favorites" id='favorites' className='btn btn-info' />
             </NavLink> : <NavLink to='/'>
                     <Button name="Favorites" id='favorites' className='btn btn-info' />
@@ -67,7 +66,6 @@ function mapDispatchToProps(dispatch) {
             listings: listings,
             searchLocation: searchLocation,
         }),
-        onReturn: () => dispatch({ type: 'RETURN' }),
         onError: (value) => dispatch({ type: 'Error', searchLocation: 'Sorry \'' + value + '\' does not exist' })
     }
 }

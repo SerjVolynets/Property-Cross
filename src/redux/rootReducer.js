@@ -9,7 +9,8 @@ export default function rootReducer(state = initialState, actions) {
     switch (actions.type) {
         case 'ADD':
             return {
-                valueInput: actions.inputValue
+                valueInput: actions.inputValue,
+                favArr: []
             }
         case 'AddObj':
             return {
