@@ -7,24 +7,34 @@ import Button from '../components/button';
 class PropertyDetails extends Component {
 
     onClickFav = () => {
-        let bool = true;
+        let isNotAddedToFavorites = true;
         this.props.favArr.map(
-            (obj) => { return (obj.index === this.props.tokenObj.index) ? (bool = !bool) : null }
+            (obj) => { return (obj.index === this.props.tokenObj.index) ? (isNotAddedToFavorites = !isNotAddedToFavorites) : null; }
         )
-        if (bool) {
-            let arrTest = [];
-            arrTest = this.props.favArr;
-
-            arrTest.push(this.props.tokenObj);
-            this.props.onAddFavor(arrTest);
+        if (isNotAddedToFavorites) {
+            let newArr = [];
+            newArr = this.props.favArr;
+            newArr.push(this.props.tokenObj);
+            this.props.onAddFavor(newArr);
         }
+        // this.getButtonName()
+    }
+    getButtonName = () => {
+        let buttonName;
+        let isNotAddedToFavorites = true;
+        this.props.favArr.map(
+            (obj) => { return obj.index === this.props.tokenObj.index ? (isNotAddedToFavorites = !isNotAddedToFavorites) : null }
+        )
+        isNotAddedToFavorites ? buttonName = 'Add to favorites' : buttonName = 'Added';
+        return buttonName;
     }
     render() {
+        console.log('hi there')
         return (
             <div>
-               <NavLink to='/listResult' ><Button name="Back" className='btn btn-secondary'/></NavLink>
+                <NavLink to='/listResult' ><Button name="Back" className='btn btn-secondary' /></NavLink>
                 <h2>Property Details</h2>
-                <Button name='Add to Favorites' className='btn btn-success' onClick={this.onClickFav} />
+                <Button name={this.getButtonName()} className='btn btn-success' onClick={this.onClickFav} />
                 <ListToken
                     key={this.props.tokenObj.index}
                     src={this.props.tokenObj.src}
@@ -33,7 +43,6 @@ class PropertyDetails extends Component {
                 />
             </div>)
     }
-
 }
 function mapStateToProps(state) {
     console.log(state);
@@ -48,9 +57,9 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        onAddFavor: (obj) => dispatch({
+        onAddFavor: (arr) => dispatch({
             type: 'onAddFavor',
-            favor: obj
+            favor: arr
         })
     }
 }

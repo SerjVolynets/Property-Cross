@@ -11,10 +11,6 @@ export default function rootReducer(state = initialState, actions) {
             return {
                 valueInput: actions.inputValue
             }
-        case 'RETURN':
-            return {
-                valueInput: ''
-            }
         case 'AddObj':
             return {
                 valueInput: '',
@@ -42,15 +38,14 @@ export default function rootReducer(state = initialState, actions) {
             }
         case 'onAddFavor':
             return {
-                valueInput: '',
                 listings: state.listings,
                 searchLocation: state.searchLocation,
                 showResult: true,
                 tokenObj:state.tokenObj,
                 favArr:actions.favor
+
             }
         default:
             return state;
     }
-
 }
