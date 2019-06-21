@@ -17,7 +17,6 @@ class PropertyDetails extends Component {
             newArr.push(this.props.tokenObj);
             this.props.onAddFavor(newArr);
         }
-        // this.getButtonName()
     }
     getButtonName = () => {
         let buttonName;
@@ -29,7 +28,6 @@ class PropertyDetails extends Component {
         return buttonName;
     }
     render() {
-        console.log('hi there')
         return (
             <div>
                 <NavLink to='/listResult' ><Button name="Back" className='btn btn-secondary' /></NavLink>
