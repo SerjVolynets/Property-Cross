@@ -8,7 +8,7 @@ class PropertyDetails extends Component {
     onClickFav = () => {
       let isNotAddedToFavorites = true;
       this.props.favArr.map(
-        obj => ((obj.index === this.props.tokenObj.index) ? (isNotAddedToFavorites = !isNotAddedToFavorites) : null),
+obj => ((obj.index === this.props.tokenObj.index) ? (isNotAddedToFavorites = !isNotAddedToFavorites) : null),
       );
       if (isNotAddedToFavorites) {
         let newArr = [];
@@ -22,7 +22,7 @@ class PropertyDetails extends Component {
       let buttonName;
       let isNotAddedToFavorites = true;
       this.props.favArr.map(
-        obj => (obj.index === this.props.tokenObj.index ? (isNotAddedToFavorites = !isNotAddedToFavorites) : null),
+obj => (obj.index === this.props.tokenObj.index ? (isNotAddedToFavorites = !isNotAddedToFavorites) : null),
       );
       isNotAddedToFavorites ? buttonName = 'Add to favorites' : buttonName = 'Added';
       return buttonName;
@@ -45,7 +45,6 @@ class PropertyDetails extends Component {
     }
 }
 function mapStateToProps(state) {
-  console.log(state);
   return {
     valueInput: state.valueInput,
     showResult: state.showResult,

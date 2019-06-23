@@ -24,7 +24,6 @@ class FavoritesList extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     valueInput: state.valueInput,
     showResult: state.showResult,

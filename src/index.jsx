@@ -19,6 +19,5 @@ const app = (
 
 ReactDOM.render(
   app,
-  // eslint-disable-next-line no-undef
   document.getElementById('root'),
 );

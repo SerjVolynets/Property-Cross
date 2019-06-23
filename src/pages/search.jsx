@@ -17,7 +17,7 @@ class Search extends Component {
 
     seenRequest = () => {
       const location = this.props.valueInput;
-      fetch(`https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=${location}`)
+      fetch('https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name='+location)
         .then(response => response.json())
         .then((data) => {
           this.props.onAddObj(data.response.listings, data.response.locations[0].long_title);
@@ -40,6 +40,7 @@ class Search extends Component {
               <Button name="Favorites" id="favorites" className="btn btn-info" />
             </NavLink>
           )}
+
           <p>Use the form below to search for houses to buy. You can search by place-name or postcode.</p>
 
           <form onSubmit={() => false}>
