@@ -5,6 +5,7 @@ import Button from '../components/button';
 import Input from '../components/input';
 import SearchResult from '../components/searchResult';
 import SearchReasultToken from '../components/searchResultToken';
+import Actions from '../actions';
 
 class Search extends Component {
     buttonClick = (event) => {
@@ -17,12 +18,12 @@ class Search extends Component {
 
     seenRequest = () => {
       const location = this.props.valueInput;
-      fetch('https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name='+location)
+      fetch(`https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=`+location)
         .then(response => response.json())
         .then((data) => {
           this.props.onAddObj(data.response.listings, data.response.locations[0].long_title);
         })
-        .catch((err) => {
+        .catch(() => {
           this.props.onError(location);
         });
     };
@@ -41,7 +42,9 @@ class Search extends Component {
             </NavLink>
           )}
 
-          <p>Use the form below to search for houses to buy. You can search by place-name or postcode.</p>
+          <p>
+            Use the form below to search for houses to buy. You can search by place-name or postcode.
+          </p>
 
           <form onSubmit={() => false}>
             <Input type="text" onChange={event => this.props.onAdd(event.target.value)} value={this.props.valueInput} />
@@ -63,16 +66,5 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onAdd: value => dispatch({ type: 'ADD', inputValue: value }),
-    onAddObj: (listings, searchLocation) => dispatch({
-      type: 'AddObj',
-      listings,
-      searchLocation,
-    }),
-    onError: value => dispatch({ type: 'Error', searchLocation: `Sorry '${value}' does not exist` }),
-  };
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, Actions)(Search);

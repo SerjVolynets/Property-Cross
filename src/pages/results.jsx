@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ListToken from '../components/listToken';
 import Button from '../components/button';
+import Actions from '../actions';
 
 class ResultList extends Component {
     onClickToken = (index) => {
@@ -43,14 +44,6 @@ function mapStateToProps(state) {
     favArr: state.favArr,
   };
 }
-function mapDispatchToProps(dispatch) {
-  return {
-    onAddTokenObj: tokenObj => dispatch({
-      type: 'onAddTokenObj',
-      tokenObj,
-    }),
 
-  };
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultList);
+export default connect(mapStateToProps, Actions)(ResultList);

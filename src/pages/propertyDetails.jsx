@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ListToken from '../components/listToken';
 import Button from '../components/button';
+import Actions from '../actions';
 
 class PropertyDetails extends Component {
     onClickFav = () => {
       let isNotAddedToFavorites = true;
       this.props.favArr.map(
-obj => ((obj.index === this.props.tokenObj.index) ? (isNotAddedToFavorites = !isNotAddedToFavorites) : null),
+        obj => (
+          (obj.index === this.props.tokenObj.index) ? isNotAddedToFavorites = !isNotAddedToFavorites : null),
       );
       if (isNotAddedToFavorites) {
         let newArr = [];
@@ -22,7 +24,8 @@ obj => ((obj.index === this.props.tokenObj.index) ? (isNotAddedToFavorites = !is
       let buttonName;
       let isNotAddedToFavorites = true;
       this.props.favArr.map(
-obj => (obj.index === this.props.tokenObj.index ? (isNotAddedToFavorites = !isNotAddedToFavorites) : null),
+        obj => (
+          obj.index === this.props.tokenObj.index ? isNotAddedToFavorites = !isNotAddedToFavorites : null),
       );
       isNotAddedToFavorites ? buttonName = 'Add to favorites' : buttonName = 'Added';
       return buttonName;
@@ -54,13 +57,6 @@ function mapStateToProps(state) {
     favArr: state.favArr,
   };
 }
-function mapDispatchToProps(dispatch) {
-  return {
-    onAddFavor: arr => dispatch({
-      type: 'onAddFavor',
-      favor: arr,
-    }),
-  };
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(PropertyDetails);
+
+export default connect(mapStateToProps, Actions)(PropertyDetails);

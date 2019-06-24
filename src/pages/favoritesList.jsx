@@ -10,9 +10,9 @@ class FavoritesList extends Component {
     return (
       <div>
         <NavLink to="/"><Button name="Back" className="btn btn-secondary" /></NavLink>
-        {this.props.favArr.map((obj, index) => (
+        {this.props.favArr.map(obj => (
           <ListToken
-            key={index}
+            key={obj.index}
             src={obj.src}
             name={obj.price}
             dis={obj.dis}

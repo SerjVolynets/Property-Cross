@@ -1,7 +1,12 @@
 {
     "extends":"airbnb",
     "parser": "babel-eslint",
-    "env": { "browser": true }
-
-
+    "env": { "browser": true,
+        "es6": true},
+    "rules": {
+        "react/destructuring-assignment": [0, "never", { "ignoreClassFields": true }],
+        "react/prop-types": [0, { "ignore": ["tokenObj"]}],
+        "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
+        "except-parens": "always"
+    }
 }
