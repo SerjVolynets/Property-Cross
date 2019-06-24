@@ -14,14 +14,18 @@ class Search extends Component {
         return;
       }
       this.seenRequest();
+      console.log(this.props.favArr);
+      // localStorage.clear();
     }
 
     seenRequest = () => {
       const location = this.props.valueInput;
+
       fetch(`https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=`+location)
         .then(response => response.json())
         .then((data) => {
           this.props.onAddObj(data.response.listings, data.response.locations[0].long_title);
+          console.log(this.props.favArr);
         })
         .catch(() => {
           this.props.onError(location);
@@ -32,7 +36,7 @@ class Search extends Component {
       return (
         <div>
           <h1>Property Cross in UK</h1>
-          {(this.props.favArr.length > 0) ? (
+          {(true) ? (
             <NavLink to="/favorites">
               <Button name="Favorites" id="favorites" className="btn btn-info" />
             </NavLink>
@@ -63,6 +67,7 @@ function mapStateToProps(state) {
     listings: state.listings,
     searchLocation: state.searchLocation,
     favArr: state.favArr,
+    one: state.one,
   };
 }
 

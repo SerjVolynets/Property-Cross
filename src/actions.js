@@ -15,5 +15,9 @@ export default function mapDispatchToProps(dispatch) {
       type: 'onAddFavor',
       favor: arr,
     }),
+    onLocalStorage: value => dispatch({
+      type: 'Local',
+      value,
+    }),
   };
 }

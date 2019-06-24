@@ -10,9 +10,9 @@ class FavoritesList extends Component {
     return (
       <div>
         <NavLink to="/"><Button name="Back" className="btn btn-secondary" /></NavLink>
-        {this.props.favArr.map(obj => (
+        {JSON.parse(localStorage.getItem('favorites')).map((obj, index) => (
           <ListToken
-            key={obj.index}
+            key={index}
             src={obj.src}
             name={obj.price}
             dis={obj.dis}
@@ -22,6 +22,7 @@ class FavoritesList extends Component {
     );
   }
 }
+
 
 function mapStateToProps(state) {
   return {

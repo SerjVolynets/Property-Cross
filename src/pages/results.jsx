@@ -14,6 +14,7 @@ class ResultList extends Component {
         index,
       };
       this.props.onAddTokenObj(tokenObj);
+
     }
 
     render() {

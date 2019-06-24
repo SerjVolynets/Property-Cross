@@ -2,6 +2,7 @@ const initialState = {
   valueInput: '',
   showResult: false,
   favArr: [],
+  one: true,
 };
 
 
@@ -10,7 +11,8 @@ export default function rootReducer(state = initialState, actions) {
     case 'ADD':
       return {
         valueInput: actions.inputValue,
-        favArr: [],
+        favArr: state.favArr,
+        one: true,
       };
     case 'AddObj':
       return {
@@ -18,7 +20,8 @@ export default function rootReducer(state = initialState, actions) {
         listings: actions.listings,
         searchLocation: actions.searchLocation,
         showResult: true,
-        favArr: [],
+        favArr: state.favArr,
+        one: false,
       };
     case 'Error':
       return {
