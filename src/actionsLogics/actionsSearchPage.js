@@ -1,14 +1,12 @@
 import store from '../store';
 
-export const onAddObj = (listings, searchLocation) => ({
+const onAddObj = (listings, searchLocation) => ({
   type: 'AddObj',
   listings,
   searchLocation,
 });
 
 export const onError = value => ({ type: 'Error', searchLocation: `Sorry '${value}' does not exist` });
-
-export const onAdd = value => ({ type: 'ADD', inputValue: value });
 
 const seenRequest = () => {
   const location = store.getState().valueInput;

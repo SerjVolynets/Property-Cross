@@ -2,17 +2,19 @@ import store from '../store';
 
 export const onAddFavor = arr => ({
   type: 'onAddFavor',
-  favor: arr,
+  favoritesList: arr,
 });
 
 export const onAddToFavorites = () => {
   let isNotAddedToFavorites = true;
-  if (localStorage.getItem('favorites') === null) {
+  if (store.getState().favoritesList.lenght < 1) {
     const newArr = [];
     newArr.push(store.getState().tokenObj);
+    store.onAddFavor(newArr);
+    console.log(store.getState().favoritesList);
     localStorage.setItem('favorites', JSON.stringify(newArr));
   } else {
-    JSON.parse(localStorage.getItem('favorites')).forEach(
+    store.getState().favoritesList.forEach(
       (obj) => {
         if (obj.src === store.getState().tokenObj.src) {
           isNotAddedToFavorites = !isNotAddedToFavorites;
@@ -21,20 +23,19 @@ export const onAddToFavorites = () => {
     );
     if (isNotAddedToFavorites) {
       let newArr = [];
-      newArr = JSON.parse(localStorage.getItem('favorites'));
+      newArr = store.getState().favoritesList;
       newArr.push(store.getState().tokenObj);
-      localStorage.setItem('favorites', JSON.stringify(newArr));
       store.dispatch(onAddFavor(newArr));
+      console.log(store.getState().favoritesList);
+      localStorage.setItem('favorites', JSON.stringify(newArr));
     }
-    
   }
-  
 };
 
 export const onDeleteFavorites = () => {
   let workArr = [];
   let isTokenObjInLocalStorage = false;
-  workArr = JSON.parse(localStorage.getItem('favorites'));
+  workArr = store.getState().favoritesList;
   workArr.forEach((obj) => {
     if (obj.src === store.getState().tokenObj.src) {
       isTokenObjInLocalStorage = !isTokenObjInLocalStorage;
@@ -48,22 +49,26 @@ export const onDeleteFavorites = () => {
       }
       return false;
     });
+    store.dispatch(onAddFavor(workArr));
+    localStorage.setItem('favorites', JSON.stringify(workArr));
   }
-  localStorage.setItem('favorites', JSON.stringify(workArr));
-  store.dispatch(onAddFavor(workArr));
+
+  console.log(store.getState().favoritesList);
+
 };
 
 export const onChangeButton = () => {
   let isAdded = false;
-  if (localStorage.getItem('favorites') == null) {
+  if (store.getState().favoritesList.lenght < 1) {
     isAdded = false;
   }
   else {
-    JSON.parse(localStorage.getItem('favorites')).forEach((obj) => {
+    store.getState().favoritesList.forEach((obj) => {
       if (obj.src === store.getState().tokenObj.src) {
         isAdded = !isAdded;
       }
     });
-  } 
+  }
+  
   return isAdded;
 };

@@ -41,7 +41,7 @@ function mapStateToProps(state) {
     showResult: state.showResult,
     listings: state.listings,
     searchLocation: state.searchLocation,
-    favArr: state.favArr,
+    favoritesList: state.favoritesList,
   };
 }
 export default connect(mapStateToProps)(ResultList);

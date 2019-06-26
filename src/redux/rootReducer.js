@@ -1,14 +1,14 @@
 const initialState = {
   valueInput: '',
   showResult: false,
-  favArr: [],
+  favoritesList: [],
+  test: true,
 };
 export default function rootReducer(state = initialState, actions) {
   switch (actions.type) {
     case 'ADD':
       return {
         valueInput: actions.inputValue,
-        favArr: state.favArr,
       };
     case 'AddObj':
       return {
@@ -16,7 +16,8 @@ export default function rootReducer(state = initialState, actions) {
         listings: actions.listings,
         searchLocation: actions.searchLocation,
         showResult: true,
-        favArr: state.favArr,
+        favoritesList: state.favoritesList,
+        test: true,
       };
     case 'Error':
       return {
@@ -24,7 +25,8 @@ export default function rootReducer(state = initialState, actions) {
         listings: actions.listings,
         searchLocation: actions.searchLocation,
         showResult: false,
-        favArr: state.favArr,
+        favoritesList: state.favoritesList,
+        test: true,
       };
     case 'onAddTokenObj':
       return {
@@ -33,16 +35,18 @@ export default function rootReducer(state = initialState, actions) {
         searchLocation: state.searchLocation,
         showResult: true,
         tokenObj: actions.tokenObj,
-        favArr: state.favArr,
+        favoritesList: state.favoritesList,
+        test: true,
       };
     case 'onAddFavor':
       return {
         valueInput: '',
         listings: state.listings,
         searchLocation: state.searchLocation,
-        showResult: true,
         tokenObj: state.tokenObj,
-        favArr: actions.favor,
+        showResult: true,
+        favoritesList: actions.favoritesList,
+
       };
     default:
       return state;

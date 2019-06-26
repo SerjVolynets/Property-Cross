@@ -17,6 +17,7 @@ class PropertyDetails extends Component {
   }
 
   render() {
+    console.log('fasd');
     return (
       <div>
         <NavLink to="/listResult"><Button name="Back" className="btn btn-secondary" /></NavLink>

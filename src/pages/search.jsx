@@ -5,8 +5,7 @@ import Button from '../components/button';
 import Input from '../components/input';
 import SearchResult from '../components/searchResult';
 import SearchReasultToken from '../components/searchResultToken';
-import { buttonClick, onAdd } from '../actionsLogics/actionsSearchPage';
-import store from '../store';
+import { buttonClick } from '../actionsLogics/actionsSearchPage';
 
 class Search extends Component {
   constructor() {
@@ -30,7 +29,7 @@ class Search extends Component {
       if (this.props.showResult) {
         return (
           <SearchResult name={this.props.searchLocation} />
-        )
+        );
       }
       return <SearchReasultToken name={this.props.searchLocation} />;
     };
@@ -45,7 +44,7 @@ class Search extends Component {
             Use the form below to search for houses to buy. You can search by place-name or postcode.
         </p>
         <form onSubmit={() => false}>
-          <Input type="text" onChange={event => store.dispatch(onAdd(event.target.value))} value={this.props.valueInput} />
+          <Input type="text" onChange={event => this.props.onAdd(event.target.value)} value={this.props.valueInput} />
           <Button name="Search" onClick={buttonClick} className="btn btn-primary" id="search" />
           {this.searchField()}
         </form>
@@ -60,10 +59,17 @@ function mapStateToProps(state) {
     showResult: state.showResult,
     listings: state.listings,
     searchLocation: state.searchLocation,
-    favArr: state.favArr,
-    one: state.one,
+    favoritesList: state.favoritesList,
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    onAdd: value => dispatch({
+      type: 'ADD',
+      inputValue: value,
+    }),
+  };
+}
 
-export default connect(mapStateToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
