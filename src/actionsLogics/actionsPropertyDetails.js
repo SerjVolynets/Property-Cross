@@ -20,12 +20,15 @@ export const onAddToFavorites = () => {
       },
     );
     if (isNotAddedToFavorites) {
-      const newArr = JSON.parse(localStorage.getItem('favorites'));
+      let newArr = [];
+      newArr = JSON.parse(localStorage.getItem('favorites'));
       newArr.push(store.getState().tokenObj);
       localStorage.setItem('favorites', JSON.stringify(newArr));
+      store.dispatch(onAddFavor(newArr));
     }
+    
   }
-  store.dispatch(onAddFavor());
+  
 };
 
 export const onDeleteFavorites = () => {
@@ -52,10 +55,15 @@ export const onDeleteFavorites = () => {
 
 export const onChangeButton = () => {
   let isAdded = false;
-  JSON.parse(localStorage.getItem('favorites')).forEach((obj) => {
-    if (obj.src === store.getState().tokenObj.src) {
-      isAdded = !isAdded;
-    }
-  });
+  if (localStorage.getItem('favorites') == null) {
+    isAdded = false;
+  }
+  else {
+    JSON.parse(localStorage.getItem('favorites')).forEach((obj) => {
+      if (obj.src === store.getState().tokenObj.src) {
+        isAdded = !isAdded;
+      }
+    });
+  } 
   return isAdded;
 };

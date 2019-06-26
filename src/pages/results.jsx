@@ -6,11 +6,12 @@ import Button from '../components/button';
 import { onClickToken } from '../actionsLogics/actionsResultsPage';
 
 class ResultList extends Component {
-  render() {
-    return (
-      <div>
-        <NavLink to="/"><Button name="Back" className="btn btn-secondary" /></NavLink>
-        {this.props.listings.map((obj, index) => (
+  constructor() {
+    super();
+
+    this.listsResult = () => {
+      return (
+        this.props.listings.map((obj, index) => (
           <NavLink to="/propertyDetails" key={index}>
             <ListToken
               key={index}
@@ -20,7 +21,16 @@ class ResultList extends Component {
               onClick={() => onClickToken(index)}
             />
           </NavLink>
-        ))}
+        ))
+      );
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <NavLink to="/"><Button name="Back" className="btn btn-secondary" /></NavLink>
+        {this.listsResult()}
       </div>
     );
   }

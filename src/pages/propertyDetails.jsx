@@ -6,12 +6,22 @@ import Button from '../components/button';
 import { onChangeButton, onDeleteFavorites, onAddToFavorites } from '../actionsLogics/actionsPropertyDetails';
 
 class PropertyDetails extends Component {
+  constructor() {
+    super();
+    this.buttonToAddOrDelete = () => {
+      if (onChangeButton()) {
+        return <Button name="Delete" className="btn btn-danger" onClick={onDeleteFavorites} />;
+      }
+      return <Button name="Add to Favorites" className="btn btn-success" onClick={onAddToFavorites} />;
+    };
+  }
+
   render() {
     return (
       <div>
         <NavLink to="/listResult"><Button name="Back" className="btn btn-secondary" /></NavLink>
         <h2>Property Details</h2>
-        {onChangeButton() ? <Button name="Delete" className="btn btn-danger" onClick={onDeleteFavorites} /> : <Button name="Add to Favorites" className="btn btn-success" onClick={onAddToFavorites} />}
+        {this.buttonToAddOrDelete()}
         <ListToken
           key={this.props.tokenObj.index}
           src={this.props.tokenObj.src}

@@ -7,21 +7,30 @@ import { onDeleteFromFavorites } from '../actionsLogics/actionsFavoritesListPage
 
 
 class FavoritesList extends Component {
+  constructor() {
+    super();
+
+    this.renderPart = () => {
+      return JSON.parse(localStorage.getItem('favorites')).map((obj, index) => (
+        <div key={obj.index}>
+          <ListToken
+            key={index}
+            src={obj.src}
+            name={obj.price}
+            dis={obj.dis}
+          />
+          <Button name="Delete" className="btn btn-danger" id="deleteFavorites" onClick={() => onDeleteFromFavorites(index)} />
+        </div>
+      ));
+    };
+  }
+
+
   render() {
     return (
       <div>
         <NavLink to="/"><Button name="Back" className="btn btn-secondary" /></NavLink>
-        {JSON.parse(localStorage.getItem('favorites')).map((obj, index) => (
-          <div key={obj.index}>
-            <ListToken
-              key={index}
-              src={obj.src}
-              name={obj.price}
-              dis={obj.dis}
-            />
-            <Button name="Delete" className="btn btn-danger" id="deleteFavorites" onClick={() => onDeleteFromFavorites(index)} />
-          </div>
-        ))}
+        {this.renderPart()}
       </div>
     );
   }
