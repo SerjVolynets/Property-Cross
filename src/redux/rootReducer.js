@@ -40,6 +40,7 @@ export default function rootReducer(state = initialState, actions) {
       };
     case 'onAddFavor':
       return {
+        valueInput: '',
         listings: state.listings,
         searchLocation: state.searchLocation,
         showResult: true,
