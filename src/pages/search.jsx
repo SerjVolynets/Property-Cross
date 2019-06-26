@@ -36,6 +36,7 @@ class Search extends Component {
   }
 
   render() {
+    console.log(this.props.favoritesList);
     return (
       <div>
         <h1>Property Cross in UK</h1>

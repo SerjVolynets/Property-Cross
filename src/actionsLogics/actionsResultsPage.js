@@ -1,5 +1,4 @@
 import store from '../store';
-import { onAddFavor } from './actionsPropertyDetails';
 
 export const onAddTokenObj = tokenObj => ({
   type: 'onAddTokenObj',
@@ -14,5 +13,8 @@ export const onClickToken = (index) => {
     index,
   };
   store.dispatch(onAddTokenObj(tokenObj));
-  store.dispatch(onAddFavor(JSON.parse(localStorage.getItem('favorites'))));
+  let arr = [];
+  if (JSON.parse(localStorage.getItem('favorites')) == undefined) {
+    localStorage.setItem('favorites', JSON.stringify(arr));
+  }
 };

@@ -18,6 +18,7 @@ class PropertyDetails extends Component {
 
   render() {
     console.log('fasd');
+    console.log(this.props.favoritesList);
     return (
       <div>
         <NavLink to="/listResult"><Button name="Back" className="btn btn-secondary" /></NavLink>
@@ -40,7 +41,7 @@ function mapStateToProps(state) {
     listings: state.listings,
     searchLocation: state.searchLocation,
     tokenObj: state.tokenObj,
-    favArr: state.favArr,
+    favoritesList: state.favoritesList,
   };
 }
 

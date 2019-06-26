@@ -11,5 +11,5 @@ export const onDeleteFromFavorites = (someIndex) => {
   workArr = JSON.parse(localStorage.getItem('favorites'));
   workArr = workArr.filter((arr, index) => (index !== someIndex));
   localStorage.setItem('favorites', JSON.stringify(workArr));
-  store.dispatch(onAddFavor());
+  store.dispatch(onAddFavor(workArr));
 };

@@ -27,6 +27,7 @@ class ResultList extends Component {
   }
 
   render() {
+    console.log(this.props.favoritesList);
     return (
       <div>
         <NavLink to="/"><Button name="Back" className="btn btn-secondary" /></NavLink>

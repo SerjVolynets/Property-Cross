@@ -1,5 +1,19 @@
 import store from '../store';
 
+// export const onAddFavor = arr => {
+//   return {
+//   type: 'onAddFavor',
+//   favoritesList: arr,
+// }
+// };
+// {
+//   valueInput: '',
+//   listings: state.listings,
+//   searchLocation: state.searchLocation,
+//   tokenObj: state.tokenObj,
+//   showResult: true,
+//   favoritesList: actions.favoritesList,
+// };
 export const onAddFavor = arr => ({
   type: 'onAddFavor',
   favoritesList: arr,
@@ -7,12 +21,13 @@ export const onAddFavor = arr => ({
 
 export const onAddToFavorites = () => {
   let isNotAddedToFavorites = true;
-  if (store.getState().favoritesList.lenght < 1) {
-    const newArr = [];
+  if (JSON.parse(localStorage.getItem('favorites') == [])) {
+    let newArr = [];
+    newArr = store.getState().favoritesList;
     newArr.push(store.getState().tokenObj);
-    store.onAddFavor(newArr);
     console.log(store.getState().favoritesList);
     localStorage.setItem('favorites', JSON.stringify(newArr));
+    store.dispatch(onAddFavor(newArr));
   } else {
     store.getState().favoritesList.forEach(
       (obj) => {
@@ -21,14 +36,14 @@ export const onAddToFavorites = () => {
         }
       },
     );
-    if (isNotAddedToFavorites) {
-      let newArr = [];
-      newArr = store.getState().favoritesList;
-      newArr.push(store.getState().tokenObj);
-      store.dispatch(onAddFavor(newArr));
-      console.log(store.getState().favoritesList);
-      localStorage.setItem('favorites', JSON.stringify(newArr));
-    }
+  }
+  if (isNotAddedToFavorites) {
+    let newArr2 = [];
+    newArr2 = store.getState().favoritesList;
+    newArr2.push(store.getState().tokenObj);
+    store.dispatch(onAddFavor(newArr2));
+    console.log(store.getState().favoritesList);
+    localStorage.setItem('favorites', JSON.stringify(newArr2));
   }
 };
 
@@ -59,7 +74,8 @@ export const onDeleteFavorites = () => {
 
 export const onChangeButton = () => {
   let isAdded = false;
-  if (store.getState().favoritesList.lenght < 1) {
+  console.log(store.getState().favoritesList);
+  if (JSON.parse(localStorage.getItem('favorites') == [])) {
     isAdded = false;
   }
   else {
@@ -69,6 +85,5 @@ export const onChangeButton = () => {
       }
     });
   }
-  
   return isAdded;
 };
