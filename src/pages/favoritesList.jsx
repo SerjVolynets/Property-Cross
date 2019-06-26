@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ListToken from '../components/listToken';
 import Button from '../components/button';
+import { onDeleteFromFavorites } from '../actionsLogics/actionsFavoritesListPage';
 
 
 class FavoritesList extends Component {
@@ -11,12 +12,15 @@ class FavoritesList extends Component {
       <div>
         <NavLink to="/"><Button name="Back" className="btn btn-secondary" /></NavLink>
         {JSON.parse(localStorage.getItem('favorites')).map((obj, index) => (
-          <ListToken
-            key={index}
-            src={obj.src}
-            name={obj.price}
-            dis={obj.dis}
-          />
+          <div key={obj.index}>
+            <ListToken
+              key={index}
+              src={obj.src}
+              name={obj.price}
+              dis={obj.dis}
+            />
+            <Button name="Delete" className="btn btn-danger" id="deleteFavorites" onClick={() => onDeleteFromFavorites(index)} />
+          </div>
         ))}
       </div>
     );

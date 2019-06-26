@@ -2,10 +2,8 @@ const initialState = {
   valueInput: '',
   showResult: false,
   favArr: [],
-  one: true,
+  one: false,
 };
-
-
 export default function rootReducer(state = initialState, actions) {
   switch (actions.type) {
     case 'ADD':
@@ -47,7 +45,6 @@ export default function rootReducer(state = initialState, actions) {
         showResult: true,
         tokenObj: state.tokenObj,
         favArr: actions.favor,
-
       };
     default:
       return state;
