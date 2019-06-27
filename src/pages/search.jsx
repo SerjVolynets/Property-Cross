@@ -5,14 +5,14 @@ import Button from '../components/button';
 import Input from '../components/input';
 import SearchResult from '../components/searchResult';
 import SearchReasultToken from '../components/searchResultToken';
-import { buttonClick } from '../actionsLogics/actionsSearchPage';
+import { getRequest, onAdd } from '../actions';
 
 class Search extends Component {
   constructor() {
     super();
-    this.isFavoritesEmpty = localStorage.getItem('favorites') !== null;
+    const isFavoritesEmpty = localStorage.getItem('favorites') !== null;
     this.buttonFavorites = () => {
-      if (this.isFavoritesEmpty) {
+      if (isFavoritesEmpty) {
         return (
           <NavLink to="/favorites">
             <Button name="Favorites" id="favorites" className="btn btn-info" />
@@ -33,10 +33,16 @@ class Search extends Component {
       }
       return <SearchReasultToken name={this.props.searchLocation} />;
     };
+    this.buttonClick = (event) => {
+      event.preventDefault();
+      if (this.props.valueInput.length < 1) {
+        return;
+      }
+      this.props.getRequest(this.props.valueInput);
+    };
   }
 
   render() {
-    console.log(this.props.favoritesList);
     return (
       <div>
         <h1>Property Cross in UK</h1>
@@ -46,7 +52,7 @@ class Search extends Component {
         </p>
         <form onSubmit={() => false}>
           <Input type="text" onChange={event => this.props.onAdd(event.target.value)} value={this.props.valueInput} />
-          <Button name="Search" onClick={buttonClick} className="btn btn-primary" id="search" />
+          <Button name="Search" onClick={this.buttonClick} className="btn btn-primary" id="search" />
           {this.searchField()}
         </form>
       </div>
@@ -64,13 +70,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onAdd: value => dispatch({
-      type: 'ADD',
-      inputValue: value,
-    }),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, { getRequest, onAdd })(Search);

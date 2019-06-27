@@ -3,27 +3,32 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ListToken from '../components/listToken';
 import Button from '../components/button';
-import { onChangeButton, onDeleteFavorites, onAddToFavorites } from '../actionsLogics/actionsPropertyDetails';
+import { addFavorite, removeFavorite, deleteFavorite } from '../actions';
 
 class PropertyDetails extends Component {
-  constructor() {
-    super();
-    this.buttonToAddOrDelete = () => {
-      if (onChangeButton()) {
-        return <Button name="Delete" className="btn btn-danger" onClick={onDeleteFavorites} />;
-      }
-      return <Button name="Add to Favorites" className="btn btn-success" onClick={onAddToFavorites} />;
-    };
+  renderPart = () => {
+    let isAdded = false;
+    if (this.props.favoritesList.length < 1) {
+      isAdded = false;
+    } else {
+      this.props.favoritesList.forEach((obj) => {
+        if (obj.src === this.props.tokenObj.src) {
+          isAdded = !isAdded;
+        }
+      });
+    }
+    if (isAdded) {
+      return <Button name="Delete" className="btn btn-danger" onClick={this.props.deleteFavorite} />;
+    }
+    return <Button name="Add to Favorites" className="btn btn-success" onClick={this.props.addFavorite} />;
   }
 
   render() {
-    console.log('fasd');
-    console.log(this.props.favoritesList);
     return (
       <div>
         <NavLink to="/listResult"><Button name="Back" className="btn btn-secondary" /></NavLink>
         <h2>Property Details</h2>
-        {this.buttonToAddOrDelete()}
+        {this.renderPart()}
         <ListToken
           key={this.props.tokenObj.index}
           src={this.props.tokenObj.src}
@@ -46,4 +51,6 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(PropertyDetails);
+export default connect(
+  mapStateToProps, { addFavorite, removeFavorite, deleteFavorite },
+)(PropertyDetails);

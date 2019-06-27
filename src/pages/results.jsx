@@ -3,35 +3,30 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ListToken from '../components/listToken';
 import Button from '../components/button';
-import { onClickToken } from '../actionsLogics/actionsResultsPage';
+import { onAddTokenObj } from '../actions';
 
 class ResultList extends Component {
-  constructor() {
-    super();
-
-    this.listsResult = () => {
-      return (
-        this.props.listings.map((obj, index) => (
-          <NavLink to="/propertyDetails" key={index}>
-            <ListToken
-              key={index}
-              src={obj.img_url}
-              name={obj.price}
-              dis={obj.title}
-              onClick={() => onClickToken(index)}
-            />
-          </NavLink>
-        ))
-      );
-    };
+  renderPart = () => {
+    return (
+      this.props.listings.map((obj, index) => (
+        <NavLink to="/propertyDetails" key={index}>
+          <ListToken
+            key={index}
+            src={obj.img_url}
+            name={obj.price}
+            dis={obj.title}
+            onClick={() => this.props.onAddTokenObj(index)}
+          />
+        </NavLink>
+      ))
+    );
   }
 
   render() {
-    console.log(this.props.favoritesList);
     return (
       <div>
         <NavLink to="/"><Button name="Back" className="btn btn-secondary" /></NavLink>
-        {this.listsResult()}
+        {this.renderPart()}
       </div>
     );
   }
@@ -45,4 +40,4 @@ function mapStateToProps(state) {
     favoritesList: state.favoritesList,
   };
 }
-export default connect(mapStateToProps)(ResultList);
+export default connect(mapStateToProps, { onAddTokenObj })(ResultList);

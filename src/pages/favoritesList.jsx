@@ -3,27 +3,29 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ListToken from '../components/listToken';
 import Button from '../components/button';
-import { onDeleteFromFavorites } from '../actionsLogics/actionsFavoritesListPage';
+import { removeFavorite } from '../actions';
 
 
 class FavoritesList extends Component {
-  constructor() {
-    super();
+  renderPart = () => {
+    const { favoritesList } = this.props;
 
-    this.renderPart = () => {
-      return JSON.parse(localStorage.getItem('favorites')).map((obj, index) => (
-        <div key={obj.index}>
-          <ListToken
-            key={index}
-            src={obj.src}
-            name={obj.price}
-            dis={obj.dis}
-          />
-          <Button name="Delete" className="btn btn-danger" id="deleteFavorites" onClick={() => onDeleteFromFavorites(index)} />
-        </div>
-      ));
-    };
-  }
+    return favoritesList.map(obj => (
+      <div key={`item-${obj.index}`}>
+        <ListToken
+          src={obj.src}
+          name={obj.price}
+          dis={obj.dis}
+        />
+        <Button
+          name="Delete"
+          className="btn btn-danger"
+          id="deleteFavorites"
+          onClick={() => this.props.removeFavorite(obj.src)}
+        />
+      </div>
+    ));
+  };
 
   render() {
     return (
@@ -35,16 +37,6 @@ class FavoritesList extends Component {
   }
 }
 
+const mapStateToProps = ({ favoritesList }) => ({ favoritesList });
 
-function mapStateToProps(state) {
-  return {
-    valueInput: state.valueInput,
-    showResult: state.showResult,
-    listings: state.listings,
-    searchLocation: state.searchLocation,
-    favArr: state.favArr,
-  };
-}
-
-
-export default connect(mapStateToProps)(FavoritesList);
+export default connect(mapStateToProps, { removeFavorite })(FavoritesList);
