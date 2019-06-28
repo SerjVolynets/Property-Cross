@@ -13,4 +13,3 @@ export const ADD_NEW_OBJECT = 'ADD_NEW_OBJECT';
 export const GET_REQUEST = 'GET_REQUEST';
 
 export const ADD = 'ADD';
-

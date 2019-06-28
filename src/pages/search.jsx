@@ -48,7 +48,8 @@ class Search extends Component {
         <h1>Property Cross in UK</h1>
         {this.buttonFavorites()}
         <p>
-            Use the form below to search for houses to buy. You can search by place-name or postcode.
+            Use the form below to search for houses to buy.
+            You can search by place-name or postcode.
         </p>
         <form onSubmit={() => false}>
           <Input type="text" onChange={event => this.props.onAdd(event.target.value)} value={this.props.valueInput} />

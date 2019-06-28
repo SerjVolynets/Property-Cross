@@ -10,8 +10,8 @@ class FavoritesList extends Component {
   renderPart = () => {
     const { favoritesList } = this.props;
 
-    return favoritesList.map(obj => (
-      <div key={`item-${obj.index}`}>
+    return favoritesList.map((obj, index) => (
+      <div key={`item-${index}`}>
         <ListToken
           src={obj.src}
           name={obj.price}

@@ -21,23 +21,25 @@ export default function rootReducer(state = initialState, actions) {
         ...state,
         valueInput: actions.payload,
       };
-    }   
+    }
     case types.ADD_NEW_OBJECT: {
       return {
         ...state,
+        valueInput: '',
         listings: actions.listings,
         searchLocation: actions.searchLocation,
         showResult: true,
       };
-    }   
+    }
     case types.ERROR: {
       return {
         ...state,
+        valueInput: '',
         showResult: false,
         listings: actions.listings,
         searchLocation: actions.searchLocation,
       };
-    } 
+    }
     case types.ADD_TOKEN_OBJECT: {
       const newTokenObj = {
         src: state.listings[actions.payload].img_url,
@@ -54,8 +56,7 @@ export default function rootReducer(state = initialState, actions) {
       const newFavorites = state.favoritesList.slice();
       if (state.favoritesList.length < 1) {
         newFavorites.push(state.tokenObj);
-      }
-      else {
+      } else {
         newFavorites.forEach(
           (obj) => {
             if (obj.src === state.tokenObj.src) {
@@ -82,14 +83,15 @@ export default function rootReducer(state = initialState, actions) {
           isTokenObjInLocalStorage = !isTokenObjInLocalStorage;
         }
       });
-      if (isTokenObjInLocalStorage) { workArr = workArr.filter(obj => obj.src !== state.tokenObj.src) ;}
+      if (isTokenObjInLocalStorage) {
+        workArr = workArr.filter(obj => obj.src !== state.tokenObj.src);
+      }
       localStorage.setItem('favorites', JSON.stringify(workArr));
       return {
         ...state,
         favoritesList: workArr,
       };
     }
-
     default:
       return state;
   }

@@ -4,5 +4,5 @@ import logger from 'redux-logger';
 import rootReducer from './redux/rootReducer';
 
 
-const store = createStore(rootReducer, applyMiddleware(logger, reduxThunk));
+const store = createStore(rootReducer, applyMiddleware(reduxThunk, logger));
 export default store;
