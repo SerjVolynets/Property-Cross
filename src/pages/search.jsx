@@ -8,10 +8,8 @@ import SearchReasultToken from '../components/searchResultToken';
 import { getRequest, onAdd } from '../actions';
 
 class Search extends Component {
-  constructor() {
-    super();
-    const isFavoritesEmpty = localStorage.getItem('favorites') !== null;
-    this.buttonFavorites = () => {
+    buttonFavorites = () => {
+      const isFavoritesEmpty = this.props.favoritesList.length > 0;
       if (isFavoritesEmpty) {
         return (
           <NavLink to="/favorites">
@@ -25,22 +23,23 @@ class Search extends Component {
         </NavLink>
       );
     };
-    this.searchField = () => {
-      if (this.props.showResult) {
-        return (
-          <SearchResult name={this.props.searchLocation} />
-        );
-      }
-      return <SearchReasultToken name={this.props.searchLocation} />;
-    };
-    this.buttonClick = (event) => {
-      event.preventDefault();
-      if (this.props.valueInput.length < 1) {
-        return;
-      }
-      this.props.getRequest(this.props.valueInput);
-    };
-  }
+
+  searchField = () => {
+    if (this.props.showResult) {
+      return (
+        <SearchResult name={this.props.searchLocation} />
+      );
+    }
+    return <SearchReasultToken name={this.props.searchLocation} />;
+  };
+
+  buttonClick = (event) => {
+    event.preventDefault();
+    if (this.props.valueInput.length < 1) {
+      return;
+    }
+    this.props.getRequest(this.props.valueInput);
+  };
 
   render() {
     return (

@@ -7,16 +7,8 @@ import { addFavorite, removeFavorite, deleteFavorite } from '../actions';
 
 class PropertyDetails extends Component {
   renderPart = () => {
-    let isAdded = false;
-    if (this.props.favoritesList.length < 1) {
-      isAdded = false;
-    } else {
-      this.props.favoritesList.forEach((obj) => {
-        if (obj.src === this.props.tokenObj.src) {
-          isAdded = !isAdded;
-        }
-      });
-    }
+    const { favoritesList } = this.props;
+    const isAdded = favoritesList.some(el => el.src === this.props.tokenObj.src);
     if (isAdded) {
       return <Button name="Delete" className="btn btn-danger" onClick={this.props.deleteFavorite} />;
     }
