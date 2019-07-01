@@ -31,15 +31,20 @@ export const onAddObj = (listings, searchLocation) => ({
   searchLocation,
 });
 
-export function getRequest(stateLocation) {
-  return (dispatch) => {
-    fetch(`https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=${stateLocation}`)
-      .then(response => response.json())
-      .then((data) => {
-        dispatch(onAddObj(data.response.listings, data.response.locations[0].long_title));
-      })
-      .catch(() => {
-        dispatch(onError(stateLocation));
-      });
-  };
-}
+// export function getRequest(stateLocation) {
+//   return (dispatch) => {
+//     fetch(`https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=${stateLocation}`)
+//       .then(response => response.json())
+//       .then((data) => {
+//         dispatch(onAddObj(data.response.listings, data.response.locations[0].long_title));
+//       })
+//       .catch(() => {
+//         dispatch(onError(stateLocation));
+//       });
+//   };
+// }
+
+export const request = stateLocation => ({
+  url: `https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=${stateLocation}`,
+  loc: stateLocation,
+});
