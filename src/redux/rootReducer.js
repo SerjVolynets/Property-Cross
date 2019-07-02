@@ -26,25 +26,24 @@ export default function rootReducer(state = initialState, actions) {
       return {
         ...state,
         valueInput: '',
-        listings: actions.listings,
-        searchLocation: actions.searchLocation,
+        searchLocation: actions.payload,
         showResult: true,
+        request2: false,
       };
     }
-    case types.ERROR: {
+    case 'ERROR': {
       return {
         ...state,
         valueInput: '',
         showResult: false,
-        listings: actions.listings,
-        searchLocation: actions.searchLocation,
+        error: actions.payload,
       };
     }
     case types.ADD_TOKEN_OBJECT: {
       const newTokenObj = {
-        src: state.listings[actions.payload].img_url,
-        price: state.listings[actions.payload].price,
-        dis: state.listings[actions.payload].summary,
+        src: state.data.listings[actions.payload].img_url,
+        price: state.data.listings[actions.payload].price,
+        dis: state.data.listings[actions.payload].summary,
       };
       return {
         ...state,
@@ -90,6 +89,22 @@ export default function rootReducer(state = initialState, actions) {
       return {
         ...state,
         favoritesList: workArr,
+      };
+    }
+    case 'SUCCESS': {
+      return {
+        ...state,
+        data: actions.payload,
+        request2: true,
+      };
+    }
+    case types.ERROR2: {
+      return {
+        ...state,
+        valueInput: '',
+        showResult: false,
+        request2: false,
+        error: 'Sorry such a city does not exist',
       };
     }
     default:

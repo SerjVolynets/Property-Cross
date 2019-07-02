@@ -1,18 +1,27 @@
-import { onAddObj, onError } from '../actions/index';
 
+function request(url, method) {
+  return fetch(url, {
+    method: method,
+  })
+    .then(response => response.json());
+}
 const thunk2 = () => next => (action) => {
-  console.log('dispatching', action.url);
-  if (action.url == undefined) {
-    const result = next(action);
-    return result;
+  if (action.payload.url === undefined) {
+    return next(action);
   }
-  fetch(action.url)
-    .then(response => response.json())
+  request(action.payload.url, action.payload.method)
     .then((data) => {
-      return next(onAddObj(data.response.listings, data.response.locations[0].long_title));
+      console.log(data);
+      return next({
+        type: 'SUCCESS',
+        payload: data.response,
+      });
     })
     .catch(() => {
-      return next(onError(action.loc));
+      return next({
+        type: 'ERROR',
+        payload: 'REQUEST_ERROR',
+      });
     });
 };
 

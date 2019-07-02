@@ -128,3 +128,5 @@
 [0630/192412.904:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0701/103151.670:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0701/103151.671:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0702/160246.231:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0702/160246.246:ERROR:crash_report_database_win.cc(469)] failed to stat report

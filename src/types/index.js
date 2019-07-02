@@ -6,7 +6,7 @@ export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
 
 export const ADD_TOKEN_OBJECT = 'ADD_TOKEN_OBJECT';
 
-export const ERROR = 'ERROR';
+export const ERROR2 = 'ERROR2';
 
 export const ADD_NEW_OBJECT = 'ADD_NEW_OBJECT';
 

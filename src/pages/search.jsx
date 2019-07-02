@@ -5,7 +5,9 @@ import Button from '../components/button';
 import Input from '../components/input';
 import SearchResult from '../components/searchResult';
 import SearchReasultToken from '../components/searchResultToken';
-import { request, onAdd } from '../actions';
+import {
+  request, onAdd, onAddObj, onError,
+} from '../actions';
 
 class Search extends Component {
     buttonFavorites = () => {
@@ -30,7 +32,7 @@ class Search extends Component {
           <SearchResult name={this.props.searchLocation} />
         );
       }
-      return <SearchReasultToken name={this.props.searchLocation} />;
+      return <SearchReasultToken name={this.props.error} />;
     };
 
     buttonClick = (event) => {
@@ -40,6 +42,14 @@ class Search extends Component {
       }
       this.props.request(this.props.valueInput);
     };
+
+    onAddObj = () => {
+      if (this.props.request2) {
+        if (this.props.data.locations.length === 0) { this.props.onError(); } else {
+          this.props.onAddObj(this.props.data.locations[0].long_title);
+        }
+      }
+    }
 
     render() {
       return (
@@ -54,6 +64,7 @@ class Search extends Component {
             <Input type="text" onChange={event => this.props.onAdd(event.target.value)} value={this.props.valueInput} />
             <Button name="Search" onClick={this.buttonClick} className="btn btn-primary" id="search" />
             {this.searchField()}
+            {this.onAddObj()}
           </form>
         </div>
       );
@@ -67,7 +78,12 @@ function mapStateToProps(state) {
     listings: state.listings,
     searchLocation: state.searchLocation,
     favoritesList: state.favoritesList,
+    data: state.data,
+    error: state.error,
+    request2: state.request2,
   };
 }
 
-export default connect(mapStateToProps, { request, onAdd })(Search);
+export default connect(mapStateToProps, {
+  request, onAdd, onAddObj, onError,
+})(Search);

@@ -8,7 +8,7 @@ import { onAddTokenObj } from '../actions';
 class ResultList extends Component {
   renderPart = () => {
     return (
-      this.props.listings.map((obj, index) => (
+      this.props.data.listings.map((obj, index) => (
         <NavLink to="/propertyDetails" key={index}>
           <ListToken
             key={index}
@@ -38,6 +38,7 @@ function mapStateToProps(state) {
     listings: state.listings,
     searchLocation: state.searchLocation,
     favoritesList: state.favoritesList,
+    data: state.data,
   };
 }
 export default connect(mapStateToProps, { onAddTokenObj })(ResultList);
