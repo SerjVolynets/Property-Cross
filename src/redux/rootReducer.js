@@ -28,10 +28,10 @@ export default function rootReducer(state = initialState, actions) {
         valueInput: '',
         searchLocation: actions.payload,
         showResult: true,
-        request2: false,
+        checkForSearch: false,
       };
     }
-    case 'ERROR': {
+    case `${types.ACTION_REQUEST}_FAILURE`: {
       return {
         ...state,
         valueInput: '',
@@ -91,19 +91,19 @@ export default function rootReducer(state = initialState, actions) {
         favoritesList: workArr,
       };
     }
-    case 'SUCCESS': {
+    case `${types.ACTION_REQUEST}_SUCCESS`: {
       return {
         ...state,
         data: actions.payload,
-        request2: true,
+        checkForSearch: true,
       };
     }
-    case types.ERROR2: {
+    case types.WRONG_CITY: {
       return {
         ...state,
         valueInput: '',
         showResult: false,
-        request2: false,
+        checkForSearch: false,
         error: 'Sorry such a city does not exist',
       };
     }

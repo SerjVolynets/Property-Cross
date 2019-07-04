@@ -6,13 +6,13 @@ import Input from '../components/input';
 import SearchResult from '../components/searchResult';
 import SearchReasultToken from '../components/searchResultToken';
 import {
-  request, onAdd, onAddObj, onError,
+  request, addInputsValue, addValueForShowResult, wrongCity,
 } from '../actions';
 
 class Search extends Component {
-    buttonFavorites = () => {
-      const isFavoritesEmpty = this.props.favoritesList.length > 0;
-      if (isFavoritesEmpty) {
+    drawButtonFavorites = () => {
+      const isFavoritesNotEmpty = this.props.favoritesList.length > 0;
+      if (isFavoritesNotEmpty) {
         return (
           <NavLink to="/favorites">
             <Button name="Favorites" id="favorites" className="btn btn-info" />
@@ -26,7 +26,7 @@ class Search extends Component {
       );
     };
 
-    searchField = () => {
+    drawSearchField = () => {
       if (this.props.showResult) {
         return (
           <SearchResult name={this.props.searchLocation} />
@@ -35,7 +35,7 @@ class Search extends Component {
       return <SearchReasultToken name={this.props.error} />;
     };
 
-    buttonClick = (event) => {
+    onSearchClick = (event) => {
       event.preventDefault();
       if (this.props.valueInput.length < 1) {
         return;
@@ -43,10 +43,10 @@ class Search extends Component {
       this.props.request(this.props.valueInput);
     };
 
-    onAddObj = () => {
-      if (this.props.request2) {
-        if (this.props.data.locations.length === 0) { this.props.onError(); } else {
-          this.props.onAddObj(this.props.data.locations[0].long_title);
+    checkForData = () => {
+      if (this.props.checkForSearch) {
+        if (this.props.data.locations.length === 0) { this.props.wrongCity(); } else {
+          this.props.addValueForShowResult(this.props.data.locations[0].long_title);
         }
       }
     }
@@ -55,16 +55,16 @@ class Search extends Component {
       return (
         <div>
           <h1>Property Cross in UK</h1>
-          {this.buttonFavorites()}
+          {this.drawButtonFavorites()}
           <p>
             Use the form below to search for houses to buy.
             You can search by place-name or postcode.
           </p>
           <form onSubmit={() => false}>
-            <Input type="text" onChange={event => this.props.onAdd(event.target.value)} value={this.props.valueInput} />
-            <Button name="Search" onClick={this.buttonClick} className="btn btn-primary" id="search" />
-            {this.searchField()}
-            {this.onAddObj()}
+            <Input type="text" onChange={event => this.props.addInputsValue(event.target.value)} value={this.props.valueInput} />
+            <Button name="Search" onClick={this.onSearchClick} className="btn btn-primary" id="search" />
+            {this.drawSearchField()}
+            {this.checkForData()}
           </form>
         </div>
       );
@@ -80,10 +80,10 @@ function mapStateToProps(state) {
     favoritesList: state.favoritesList,
     data: state.data,
     error: state.error,
-    request2: state.request2,
+    checkForSearch: state.checkForSearch,
   };
 }
 
 export default connect(mapStateToProps, {
-  request, onAdd, onAddObj, onError,
+  request, addInputsValue, addValueForShowResult, wrongCity,
 })(Search);

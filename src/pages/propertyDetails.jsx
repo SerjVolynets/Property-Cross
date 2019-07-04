@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ListToken from '../components/listToken';
 import Button from '../components/button';
-import { addFavorite, removeFavorite, deleteFavorite } from '../actions';
+import { addToFavorite, removeFavorite, deleteFavorite } from '../actions';
 
 class PropertyDetails extends Component {
   renderPart = () => {
@@ -12,7 +12,7 @@ class PropertyDetails extends Component {
     if (isAdded) {
       return <Button name="Delete" className="btn btn-danger" onClick={this.props.deleteFavorite} />;
     }
-    return <Button name="Add to Favorites" className="btn btn-success" onClick={this.props.addFavorite} />;
+    return <Button name="Add to Favorites" className="btn btn-success" onClick={this.props.addToFavorite} />;
   }
 
   render() {
@@ -44,5 +44,5 @@ function mapStateToProps(state) {
 
 
 export default connect(
-  mapStateToProps, { addFavorite, removeFavorite, deleteFavorite },
+  mapStateToProps, { addToFavorite, removeFavorite, deleteFavorite },
 )(PropertyDetails);

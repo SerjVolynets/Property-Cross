@@ -1,11 +1,11 @@
 import * as types from '../types';
 
-export const addFavorite = () => ({
+export const addToFavorite = () => ({
   type: types.ADD_FAVORITE,
   payload: '',
 });
 
-export const onAdd = value => ({
+export const addInputsValue = value => ({
   type: types.ADD,
   payload: value,
 });
@@ -20,14 +20,14 @@ export const deleteFavorite = () => ({
   payload: '',
 });
 
-export const onAddTokenObj = index => ({
+export const addValuesForTokenProperty = index => ({
   type: types.ADD_TOKEN_OBJECT,
   payload: index,
 });
 
-export const onError = () => ({ type: types.ERROR2, payload: 'REQUEST_ERROR' });
+export const wrongCity = () => ({ type: types.WRONG_CITY, payload: 'REQUEST_ERROR' });
 
-export const onAddObj = searchLocation => ({
+export const addValueForShowResult = searchLocation => ({
   type: types.ADD_NEW_OBJECT,
   payload: searchLocation,
 });
@@ -46,10 +46,10 @@ export const onAddObj = searchLocation => ({
 // }
 
 export const request = stateLocation => ({
-  type: 'GET_REQUEST',
+  type: types.ACTION_REQUEST,
+  method: 'GET',
+  url: `https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=${stateLocation}`,
   payload: {
     use: 'request',
-    method: 'GET',
-    url: `https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=${stateLocation}`,
   },
 });

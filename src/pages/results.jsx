@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ListToken from '../components/listToken';
 import Button from '../components/button';
-import { onAddTokenObj } from '../actions';
+import { addValuesForTokenProperty } from '../actions';
 
 class ResultList extends Component {
   renderPart = () => {
@@ -15,7 +15,7 @@ class ResultList extends Component {
             src={obj.img_url}
             name={obj.price}
             dis={obj.title}
-            onClick={() => this.props.onAddTokenObj(index)}
+            onClick={() => this.props.addValuesForTokenProperty(index)}
           />
         </NavLink>
       ))
@@ -41,4 +41,4 @@ function mapStateToProps(state) {
     data: state.data,
   };
 }
-export default connect(mapStateToProps, { onAddTokenObj })(ResultList);
+export default connect(mapStateToProps, { addValuesForTokenProperty })(ResultList);
