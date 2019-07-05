@@ -16,4 +16,4 @@ export const GET_REQUEST = 'GET_REQUEST';
 
 export const ADD = 'ADD';
 
-export const ACTION_REQUEST = helper('ACTION_REQUEST');
+export const GET_REALTY = helper('ACTION_REQUEST');

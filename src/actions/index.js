@@ -46,7 +46,7 @@ export const addValueForShowResult = searchLocation => ({
 // }
 
 export const request = stateLocation => ({
-  type: types.ACTION_REQUEST,
+  type: types.GET_REALTY,
   method: 'GET',
   url: `https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=${stateLocation}`,
 });

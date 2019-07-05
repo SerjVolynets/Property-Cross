@@ -31,7 +31,7 @@ export default function rootReducer(state = initialState, actions) {
         checkForSearch: false,
       };
     }
-    case types.ACTION_REQUEST.errorRequest: {
+    case types.GET_REALTY.FAILURE: {
       return {
         ...state,
         valueInput: '',
@@ -91,7 +91,7 @@ export default function rootReducer(state = initialState, actions) {
         favoritesList: workArr,
       };
     }
-    case types.ACTION_REQUEST.successRequest: {
+    case types.GET_REALTY.SUCCESS: {
       return {
         ...state,
         data: actions.payload,
