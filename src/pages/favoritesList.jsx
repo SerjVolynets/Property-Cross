@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import ListToken from '../components/listToken';
 import Button from '../components/button';
 import { removeFavorite } from '../actions';
@@ -36,7 +37,10 @@ class FavoritesList extends Component {
     );
   }
 }
-
+FavoritesList.propTypes = {
+  favoritesList: PropTypes.array,
+  removeFavorite: PropTypes.func
+};
 const mapStateToProps = ({ favoritesList }) => ({ favoritesList });
 
 export default connect(mapStateToProps, { removeFavorite })(FavoritesList);

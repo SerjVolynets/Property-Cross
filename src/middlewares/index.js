@@ -18,7 +18,7 @@ const middlewareForRequest = () => next => (action) => {
         payload: data.response,
       });
     })
-    .catch(() => next({ type: action.type.FAILURE }));
+    .catch(() => next({ type: action.type.FAILURE, payload: 'REQUEST_ERROR' }));
 };
 
 export default middlewareForRequest;

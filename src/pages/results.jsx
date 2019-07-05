@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import ListToken from '../components/listToken';
 import Button from '../components/button';
 import { addValuesForTokenProperty } from '../actions';
@@ -31,6 +32,12 @@ class ResultList extends Component {
     );
   }
 }
+
+ResultList.propTypes = {
+  listings: PropTypes.array,
+  addValuesForTokenProperty: PropTypes.func,
+};
+
 function mapStateToProps(state) {
   return {
     valueInput: state.valueInput,

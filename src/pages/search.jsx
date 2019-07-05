@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Button from '../components/button';
 import Input from '../components/input';
 import SearchResult from '../components/searchResult';
@@ -71,6 +72,22 @@ class Search extends Component {
     }
 }
 
+Search.propTypes = {
+  favoritesList: PropTypes.array,
+  showResult: PropTypes.bool,
+  isFavoritesNotEmpty: PropTypes.bool,
+  searchLocation: PropTypes.string,
+  error: PropTypes.string,
+  valueInput: PropTypes.string,
+  checkForSearch: PropTypes.bool,
+  locations: PropTypes.array,
+  request: PropTypes.func,
+  wrongCity: PropTypes.func,
+  addValueForShowResult: PropTypes.func,
+  addInputsValue: PropTypes.func,
+
+};
+
 function mapStateToProps(state) {
   return {
     valueInput: state.valueInput,
@@ -83,6 +100,7 @@ function mapStateToProps(state) {
     checkForSearch: state.checkForSearch,
   };
 }
+
 
 export default connect(mapStateToProps, {
   request, addInputsValue, addValueForShowResult, wrongCity,

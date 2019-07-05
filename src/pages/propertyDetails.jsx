@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import ListToken from '../components/listToken';
 import Button from '../components/button';
 import { addToFavorite, removeFavorite, deleteFavorite } from '../actions';
@@ -42,6 +43,13 @@ function mapStateToProps(state) {
   };
 }
 
+PropertyDetails.propTypes = {
+  favoritesList: PropTypes.array,
+  isAdded: PropTypes.bool,
+  deleteFavorite: PropTypes.func,
+  addToFavorite: PropTypes.func,
+  tokenObj: PropTypes.object
+};
 
 export default connect(
   mapStateToProps, { addToFavorite, removeFavorite, deleteFavorite },
