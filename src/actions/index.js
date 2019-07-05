@@ -5,7 +5,7 @@ export const addToFavorite = () => ({
   payload: '',
 });
 
-export const request = stateLocation => ({
+export const getRealty = stateLocation => ({
   type: types.GET_REALTY,
   method: 'GET',
   url: `https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=${stateLocation}`,

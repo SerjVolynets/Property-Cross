@@ -7,7 +7,7 @@ import Input from '../components/input';
 import SearchResult from '../components/searchResult';
 import SearchReasultToken from '../components/searchResultToken';
 import {
-  request, addValueInput, addValueForShowResult, wrongCity,
+  getRealty, addValueInput, addValueForShowResult, wrongCity,
 } from '../actions';
 
 class Search extends Component {
@@ -41,7 +41,7 @@ class Search extends Component {
       if (this.props.valueInput.length < 1) {
         return;
       }
-      this.props.request(this.props.valueInput);
+      this.props.getRealty(this.props.valueInput);
     };
 
     checkForData = () => {
@@ -105,7 +105,7 @@ Search.propTypes = {
     })),
   }),
   error: PropTypes.string,
-  request: PropTypes.func,
+  getRealty: PropTypes.func,
   wrongCity: PropTypes.func,
   addValueForShowResult: PropTypes.func,
   addInputsValue: PropTypes.func,
@@ -125,5 +125,5 @@ function mapStateToProps(state) {
 
 
 export default connect(mapStateToProps, {
-  request, addValueInput, addValueForShowResult, wrongCity,
+  getRealty, addValueInput, addValueForShowResult, wrongCity,
 })(Search);

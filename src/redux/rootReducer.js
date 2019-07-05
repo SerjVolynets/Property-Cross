@@ -36,7 +36,7 @@ export default function rootReducer(state = initialState, actions) {
         ...state,
         valueInput: '',
         showResult: false,
-        error: actions.payload,
+        error: actions.payload.message,
       };
     }
     case types.GET_REALTY.SUCCESS: {

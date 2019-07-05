@@ -18,7 +18,7 @@ const middlewareForRequest = () => next => (action) => {
         payload: data.response,
       });
     })
-    .catch(error => next({ type: action.type.FAILURE, payload: `There has been a problem with your request operation: ${error.message}` }));
+    .catch(error => next({ type: action.type.FAILURE, payload: error }));
 };
 
 export default middlewareForRequest;
