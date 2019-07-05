@@ -1,3 +1,5 @@
+import helper from '../middlewares/helpers';
+
 export const ADD_FAVORITE = 'ADD_FAVORITE';
 
 export const REMOVE_CURRENT_FAVORITE = 'REMOVE_CURRENT_FAVORITE';
@@ -14,4 +16,4 @@ export const GET_REQUEST = 'GET_REQUEST';
 
 export const ADD = 'ADD';
 
-export const ACTION_REQUEST = 'ACTION_REQUEST';
+export const ACTION_REQUEST = helper('ACTION_REQUEST');

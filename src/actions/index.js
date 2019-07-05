@@ -49,7 +49,4 @@ export const request = stateLocation => ({
   type: types.ACTION_REQUEST,
   method: 'GET',
   url: `https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=${stateLocation}`,
-  payload: {
-    use: 'request',
-  },
 });
