@@ -10,6 +10,7 @@ class PropertyDetails extends Component {
   renderPart = () => {
     const { favoritesList } = this.props;
     const isAdded = favoritesList.some(el => el.src === this.props.tokenObj.src);
+    console.log(this.props.tokenObj);
     if (isAdded) {
       return <Button name="Delete" className="btn btn-danger" onClick={this.props.deleteFavorite} />;
     }
@@ -44,11 +45,19 @@ function mapStateToProps(state) {
 }
 
 PropertyDetails.propTypes = {
-  favoritesList: PropTypes.array,
+  favoritesList: PropTypes.arrayOf(PropTypes.shape({
+    dis: PropTypes.string,
+    price: PropTypes.number,
+    src: PropTypes.string,
+  })),
   isAdded: PropTypes.bool,
   deleteFavorite: PropTypes.func,
   addToFavorite: PropTypes.func,
-  tokenObj: PropTypes.object
+  tokenObj: PropTypes.shape({
+    dis: PropTypes.string,
+    price: PropTypes.number,
+    src: PropTypes.string,
+  }),
 };
 
 export default connect(

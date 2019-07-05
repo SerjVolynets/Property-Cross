@@ -13,6 +13,7 @@ import {
 class Search extends Component {
     drawButtonFavorites = () => {
       const isFavoritesNotEmpty = this.props.favoritesList.length > 0;
+      console.log(this.props.favoritesList);
       if (isFavoritesNotEmpty) {
         return (
           <NavLink to="/favorites">
@@ -46,6 +47,7 @@ class Search extends Component {
 
     checkForData = () => {
       if (this.props.checkForSearch) {
+        console.log(this.props.locations);
         if (this.props.data.locations.length === 0) { this.props.wrongCity(); } else {
           this.props.addValueForShowResult(this.props.data.locations[0].long_title);
         }
@@ -73,14 +75,24 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-  favoritesList: PropTypes.array,
+  favoritesList: PropTypes.arrayOf(PropTypes.shape({
+    dis: PropTypes.string,
+    price: PropTypes.number,
+    src: PropTypes.string,
+  })),
   showResult: PropTypes.bool,
   isFavoritesNotEmpty: PropTypes.bool,
   searchLocation: PropTypes.string,
   error: PropTypes.string,
   valueInput: PropTypes.string,
   checkForSearch: PropTypes.bool,
-  locations: PropTypes.array,
+  locations: PropTypes.arrayOf(PropTypes.shape({
+    center_lat: PropTypes.number,
+    center_long: PropTypes.number,
+    long_title: PropTypes.string,
+    place_name: PropTypes.string,
+    title: PropTypes.string,
+  })),
   request: PropTypes.func,
   wrongCity: PropTypes.func,
   addValueForShowResult: PropTypes.func,

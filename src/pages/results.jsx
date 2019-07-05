@@ -34,7 +34,11 @@ class ResultList extends Component {
 }
 
 ResultList.propTypes = {
-  listings: PropTypes.array,
+  listings: PropTypes.arrayOf(PropTypes.shape({
+    src: PropTypes.string,
+    img_url: PropTypes.string,
+    price: PropTypes.number,
+  })),
   addValuesForTokenProperty: PropTypes.func,
 };
 

@@ -38,7 +38,11 @@ class FavoritesList extends Component {
   }
 }
 FavoritesList.propTypes = {
-  favoritesList: PropTypes.array,
+  favoritesList: PropTypes.arrayOf(PropTypes.shape({
+    dis: PropTypes.string,
+    price: PropTypes.number,
+    src: PropTypes.string,
+  })),
   removeFavorite: PropTypes.func
 };
 const mapStateToProps = ({ favoritesList }) => ({ favoritesList });
