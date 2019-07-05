@@ -5,8 +5,14 @@ export const addToFavorite = () => ({
   payload: '',
 });
 
-export const addInputsValue = value => ({
-  type: types.ADD,
+export const request = stateLocation => ({
+  type: types.GET_REALTY,
+  method: 'GET',
+  url: `https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=${stateLocation}`,
+});
+
+export const addValueInput = value => ({
+  type: types.ADD_VALUE_INPUT,
   payload: value,
 });
 
@@ -15,7 +21,7 @@ export const removeFavorite = index => ({
   payload: index,
 });
 
-export const deleteFavorite = () => ({
+export const deleteFromFavorite = () => ({
   type: types.REMOVE_FAVORITE,
   payload: '',
 });
@@ -44,9 +50,3 @@ export const addValueForShowResult = searchLocation => ({
 //       });
 //   };
 // }
-
-export const request = stateLocation => ({
-  type: types.GET_REALTY,
-  method: 'GET',
-  url: `https://api.nestoria.co.uk/api?encoding=json&foo=bar&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=${stateLocation}`,
-});

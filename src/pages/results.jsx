@@ -39,15 +39,31 @@ ResultList.propTypes = {
     img_url: PropTypes.string,
     price: PropTypes.number,
   })),
+  favoritesList: PropTypes.arrayOf(PropTypes.shape({
+    dis: PropTypes.string,
+    price: PropTypes.number,
+    src: PropTypes.string,
+  })),
+  data: PropTypes.shape({
+    listings: PropTypes.arrayOf(PropTypes.shape({
+      src: PropTypes.string,
+      img_url: PropTypes.string,
+      price: PropTypes.number,
+    })),
+    locations: PropTypes.arrayOf(PropTypes.shape({
+      center_lat: PropTypes.number,
+      center_long: PropTypes.number,
+      long_title: PropTypes.string,
+      place_name: PropTypes.string,
+      title: PropTypes.string,
+    })),
+  }),
   addValuesForTokenProperty: PropTypes.func,
 };
 
 function mapStateToProps(state) {
   return {
-    valueInput: state.valueInput,
-    showResult: state.showResult,
     listings: state.listings,
-    searchLocation: state.searchLocation,
     favoritesList: state.favoritesList,
     data: state.data,
   };

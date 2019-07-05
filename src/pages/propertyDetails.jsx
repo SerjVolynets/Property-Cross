@@ -4,15 +4,14 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ListToken from '../components/listToken';
 import Button from '../components/button';
-import { addToFavorite, removeFavorite, deleteFavorite } from '../actions';
+import { addToFavorite, deleteFromFavorite } from '../actions';
 
 class PropertyDetails extends Component {
   renderPart = () => {
     const { favoritesList } = this.props;
     const isAdded = favoritesList.some(el => el.src === this.props.tokenObj.src);
-    console.log(this.props.tokenObj);
     if (isAdded) {
-      return <Button name="Delete" className="btn btn-danger" onClick={this.props.deleteFavorite} />;
+      return <Button name="Delete" className="btn btn-danger" onClick={this.props.deleteFromFavorite} />;
     }
     return <Button name="Add to Favorites" className="btn btn-success" onClick={this.props.addToFavorite} />;
   }
@@ -33,16 +32,6 @@ class PropertyDetails extends Component {
     );
   }
 }
-function mapStateToProps(state) {
-  return {
-    valueInput: state.valueInput,
-    showResult: state.showResult,
-    listings: state.listings,
-    searchLocation: state.searchLocation,
-    tokenObj: state.tokenObj,
-    favoritesList: state.favoritesList,
-  };
-}
 
 PropertyDetails.propTypes = {
   favoritesList: PropTypes.arrayOf(PropTypes.shape({
@@ -50,16 +39,23 @@ PropertyDetails.propTypes = {
     price: PropTypes.number,
     src: PropTypes.string,
   })),
-  isAdded: PropTypes.bool,
-  deleteFavorite: PropTypes.func,
-  addToFavorite: PropTypes.func,
   tokenObj: PropTypes.shape({
     dis: PropTypes.string,
     price: PropTypes.number,
     src: PropTypes.string,
   }),
+  deleteFromFavorite: PropTypes.func,
+  addToFavorite: PropTypes.func,
+  isAdded: PropTypes.bool,
 };
 
+function mapStateToProps(state) {
+  return {
+    tokenObj: state.tokenObj,
+    favoritesList: state.favoritesList,
+  };
+}
+
 export default connect(
-  mapStateToProps, { addToFavorite, removeFavorite, deleteFavorite },
+  mapStateToProps, { addToFavorite, deleteFromFavorite },
 )(PropertyDetails);

@@ -1,4 +1,6 @@
-import helper from '../middlewares/helpers/createApiActionTypes';
+import createApiActionTypes from '../helpers/createApiActionTypes';
+
+export const GET_REALTY = createApiActionTypes('ACTION_REQUEST');
 
 export const ADD_FAVORITE = 'ADD_FAVORITE';
 
@@ -14,6 +16,4 @@ export const ADD_NEW_OBJECT = 'ADD_NEW_OBJECT';
 
 export const GET_REQUEST = 'GET_REQUEST';
 
-export const ADD = 'ADD';
-
-export const GET_REALTY = helper('ACTION_REQUEST');
+export const ADD_VALUE_INPUT = 'ADD_VALUE_INPUT';

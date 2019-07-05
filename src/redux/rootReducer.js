@@ -16,7 +16,7 @@ export default function rootReducer(state = initialState, actions) {
         favoritesList: newFavorites,
       };
     }
-    case types.ADD: {
+    case types.ADD_VALUE_INPUT: {
       return {
         ...state,
         valueInput: actions.payload,
@@ -37,6 +37,13 @@ export default function rootReducer(state = initialState, actions) {
         valueInput: '',
         showResult: false,
         error: actions.payload,
+      };
+    }
+    case types.GET_REALTY.SUCCESS: {
+      return {
+        ...state,
+        data: actions.payload,
+        checkForSearch: true,
       };
     }
     case types.ADD_TOKEN_OBJECT: {
@@ -89,13 +96,6 @@ export default function rootReducer(state = initialState, actions) {
       return {
         ...state,
         favoritesList: workArr,
-      };
-    }
-    case types.GET_REALTY.SUCCESS: {
-      return {
-        ...state,
-        data: actions.payload,
-        checkForSearch: true,
       };
     }
     case types.WRONG_CITY: {
